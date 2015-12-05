@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset='utf-8'> 
+<head>
+<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- META ===================================================== --> 
+    <title>Monthly - A jQuery Calendar Plugin</title> 
+    <meta name="description" content="A method for responsive tables"> 
+
+<!-- Favicon  ========================================== --> 
+	
+
+<!-- CSS ====================================================== 
+	<link rel="stylesheet" href="css/responsivetables.css">--> 
+	<!-- Demo CSS (don't use) -->
+	<link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		body, html {
+			padding:0px;
+			margin:0px;
+			background: url('images/bg.jpg');
+			background-size:cover;
+			background-attachment: fixed;
+			color:#fff;
+			line-height: 1.4em;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+		}
+		h1 {
+			font-family: 'Yanone Kaffeesatz', sans-serif;
+			text-align: center;
+			font-size: 77px;
+			text-shadow: 0 0px 30px rgba(0, 0, 0, 0.2);
+		}
+		h2 {
+			font-family: 'Yanone Kaffeesatz', sans-serif;
+			font-size:30px;
+			color:#222;
+			text-shadow: 0 0 20px #EED5D4;
+		}
+		.monthly {
+			box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+		}
+		.page {
+			width:100vw;
+			max-width: 100%;
+			min-height: 100vh;
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding:10px;
+			box-sizing:border-box;
+		}
+		.page:nth-child(2) {
+			min-height: auto;
+			padding:50px 0 75px 0;
+			background:rgba(0,0,0,.5);
+		}
+		.page:nth-child(2) h2 {
+			color:#fff;
+			text-shadow:none;
+		}
+		.page-contents {
+			width: 100%;
+			text-align:center;
+		}
+		input[type="text"] {
+			padding: 15px;
+			border-radius: 2px;
+			font-size: 16px;
+			outline: none;
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			background: rgba(63, 78, 100, 0.27);
+			color: #fff;
+			width: 250px;
+			box-sizing: border-box;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+		}
+		input[type="text"]:hover {
+			border: 2px solid rgba(255, 255, 255, 0.7);
+		}
+		input[type="text"]:focus {
+			border: 2px solid rgba(255, 255, 255, 1);
+			background:#eee;
+			color:#222;
+		}
+		.sticky {
+			position: fixed;
+			bottom: 0;
+			width:100%;
+			padding:5px;
+			box-sizing:border-box;
+			text-align: center;
+			background:rgba(11, 13, 13, 0.9);
+		}
+		.button {
+			display: inline-block;
+			padding: 10px 25px;
+			border-radius: 3px;
+			color: #fff;
+			background: #687AA8;
+			text-decoration: none;
+		}
+		.button:hover {
+			background: #4C64A0;
+		}
+		.desc {
+			max-width: 250px;
+			text-align: left;
+			font-size:14px;
+			padding-top:30px;
+			line-height: 1.4em;
+		}
+		@media (max-height: 700px) {
+			.sticky {
+				position: relative;
+			}
+		}
+	</style>
+	<link rel="stylesheet" href="css/monthly.css">
+</head>
+<body>
+<div class="page">
+	<div class="page-contents">
+		<h1>monthly.js</h1>
+		<h2>Example One - Events</h2>
+		<div style="width:100%; max-width:600px; display:inline-block;">
+			<div class="monthly" id="mycalendar"></div>
+		</div>
+	</div>
+</div>
+<div class="page">
+	<div class="page-contents">
+		<h2>Example Two - Date Picker</h2>
+		<div style="width:250px; display:inline-block;">
+		<input type="text" id="mytarget" value="Select Date">
+		<div class="monthly" id="mycalendar2"></div>
+		<div class="desc">
+		<b>Monthly.js Features:</b>
+		<ul>
+			<li>Unlimited month scrolling</li>
+			<li>'Date Picker' 'Event' or 'Normal' modes</li>
+			<li>Fully responsive design</li>
+			<li>Event list under calendar</li>
+			<li>Mouseover event list to highlight event days</li>
+			<li>Handles multiple calendars on one page</li>
+			<li>Easy customization</li>
+		</ul>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="sticky">
+	<a href="#" class="button">Get it on da hub</a>
+</div>
+<!-- JS ======================================================= --> 
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/monthly-1.0.0.js"></script>
+<script type="text/javascript">
+	$(window).load( function() {
+
+		$('#mycalendar').monthly({
+			mode: 'event',
+			xmlUrl: 'events.xml'
+		});
+		
+		$('#mycalendar2').monthly({
+			target: '#mytarget',
+			maxWidth: '250px',
+			startHidden: true,
+			showTrigger: '#mytarget'
+		});
+
+	});
+</script>
+</body>
+</html>

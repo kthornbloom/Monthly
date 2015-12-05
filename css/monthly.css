@@ -1,0 +1,305 @@
+/* Overall wrapper */
+.monthly {
+	background: #F3F3F5;
+	color:#545454;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Contains title & nav */
+.monthly-header {
+	position: relative;
+	text-align:center;
+	padding:10px;
+	background: #fff;
+}
+.monthly-header-title {
+	font-size:.8em;
+	text-transform: uppercase;
+}
+/* wrapper for left button to make the clickable area bigger */
+.monthly-prev {
+	position: absolute;
+	top:0;
+	left:0;
+	width:50px;
+	height:100%;
+	opacity: .5;
+}
+.monthly-prev:hover {
+	opacity: 1;
+}
+/* Left Arrow */
+.monthly-prev:after{
+	content:'';
+	position: absolute;
+	top:50%;
+	left:50%;
+	border-left:2px solid #222;
+	border-bottom:2px solid #222;
+	width:5px;
+	height:5px;
+	margin:-5px 0 0 -5px;
+	transform:rotate(45deg) ;
+}
+/* wrapper for right button to make the clickable area bigger */
+.monthly-next {
+	position: absolute;
+	top:0;
+	right:0;
+	width:50px;
+	height:100%;
+	opacity: .5;
+}
+.monthly-next:hover {
+	opacity: 1;
+}
+/* Right Arrow */
+.monthly-next:after{
+	content:'';
+	position: absolute;
+	top:50%;
+	left:50%;
+	border-right:2px solid #222;
+	border-top:2px solid #222;
+	width:5px;
+	height:5px;
+	margin:-5px 0 0 -5px;
+	transform:rotate(45deg) ;
+}
+
+/* Day of the week headings */
+.monthly-day-title-wrap {
+	display: flex;
+	background: #fff;
+	border-bottom: 1px solid #EBEBEB;
+}
+.monthly-day-title-wrap div {
+	width: calc(100% / 7);
+	box-sizing:border-box;
+	position: relative;
+	font-weight: bold;
+	text-align:center;
+	text-transform: uppercase;
+	font-size:11px;
+}
+
+/* Calendar days wrapper */
+.monthly-day-wrap {
+	display:flex;
+	flex-wrap:wrap;
+	align-content:stretch;
+	width:100%;
+	overflow: hidden;
+}
+
+/* Calendar Days */
+.monthly-day, .monthly-day-blank {
+	width: calc(100% / 7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing:border-box;
+	position: relative;
+	font-weight: bold;
+	color:inherit;
+	background: #fff;
+	box-shadow: 0 0 0 1px #EBEBEB;
+	transition:.2s;
+	padding:0;
+	text-decoration: none;
+}
+
+/* Trick to make the days width equal height */
+.monthly-day:before, .monthly-day-blank:before {
+	content: "";
+	display: block;
+	padding-top: 100%;
+	float: left;
+}
+
+/* Hover effect for non event calendar days */
+.monthly-day-wrap > a:hover {
+	background: #ccc;
+	box-shadow: none;
+	z-index: 1;
+}
+
+/* Days that are part of previous or next month */
+.monthly-day-blank {
+	background:#F3F3F5;
+}
+
+/* Event calendar day number styles */
+div > .monthly-day-number {
+	position: absolute;
+	line-height: 1em;
+	top:2px;
+	left:2px;
+	font-size:11px;
+}
+
+/* Non-Event calendar day number styles */
+a > .monthly-day-number {
+	line-height: 1em;
+	font-size:11px;
+}
+
+/* Current day style */
+.monthly-today {
+	background:#E7ECF5;
+}
+
+/* Button to reset to current month */
+.monthly-reset {
+	display: inline-block;
+	width: 9px;
+	height: 9px;
+	border: 2px solid #222;
+	border-radius: 9px;
+	position: relative;
+	opacity: .5;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+.monthly-reset:hover {
+	opacity: 1;
+}
+
+/* Makes the little arrow on the reset button */
+.monthly-reset:before {
+	content: '';
+	border: 3px solid transparent;
+	border-left: 3px solid #fff;
+	border-bottom: 3px solid #fff;
+	position: absolute;
+	left: 2px;
+	top: 6px;
+}
+.monthly-reset:after {
+	content: '';
+	border: 3px solid transparent;
+	border-left: 3px solid #222;
+	border-bottom: 3px solid #222;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+
+/* Class for days with events */
+.monthly-indicator-wrap {
+	position: relative;
+	text-align: center;
+	line-height: 0;
+	max-width: 20px;
+}
+
+/* Event indicator dots */
+.monthly-day .monthly-event-indicator {
+	display: inline-block;
+	margin: 1px;
+	width: 8px;
+	height: 8px;
+	border-radius: 6px;
+	vertical-align: middle;
+	border-radius: 6px;
+	background:#7BA7CE;
+	font-size:0;
+	color:transparent;
+}
+
+.monthly-day .monthly-event-indicator:hover {
+	cursor: pointer;
+}
+/* Listing of events under calendar */
+.monthly-event-list {
+	background:#2D2D2F;
+	max-height: 200px;
+	overflow: auto;
+}
+
+/* Indicator dots within the events list */
+.monthly-event-list .monthly-event-indicator {
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	display: inline-block;
+	background:#7BA7CE;
+}
+
+/* Events within events list */
+.monthly-event-list a,
+.monthly-event-list a:link,
+.monthly-event-list a:visited {
+	display: block;
+	padding: 10px 15px;
+	font-size:14px;
+	color: #F1F1F1;
+	text-decoration: none;
+	border-bottom: 1px solid #3E3E3E;
+	text-align: left;
+}
+.monthly-event-list a:hover {
+	background: rgba(0,0,0,.6);
+}
+.monthly-list-date {
+	font-style: italic;
+	color: #8A8A8A;
+	font-size: .9em;
+}
+
+/* Events List custom webkit scrollbar */
+
+.monthly-event-list::-webkit-scrollbar {width: 9px;}
+ 
+/* Track */
+.monthly-event-list::-webkit-scrollbar-track {background: none;}
+ 
+/* Handle */
+.monthly-event-list::-webkit-scrollbar-thumb {
+	background:#525252;
+	border:1px solid #2D2D2F;
+	border-radius: 10px;
+}
+.monthly-event-list::-webkit-scrollbar-thumb:hover {background:#929292;}
+
+/* Increase font & spacing over larger size */
+@media (min-width: 400px) {
+	.monthly-day-number {
+		top: 5px;
+		left: 5px;
+		font-size: 13px;
+	}
+}
+/* Styles for large mode where text is revealed within events */
+@media (min-width: 600px) {
+	div.monthly-day {
+		padding-top: 20px;
+	}
+	div.monthly-day:before {
+		padding-top: 77%;
+	}
+	div > .monthly-indicator-wrap {
+		width:100%;
+		max-width: none;
+	}
+	.monthly-day .monthly-event-indicator {
+		display: block;
+		margin: 0 0 1px 0;
+		width: 100%;
+		height:20px;
+		font-size: 11px;
+		padding: 4px;
+		border-radius:0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color:#fff;
+		text-shadow:0 0 2px rgba(0,0,0,.2);
+		text-decoration: none;
+		line-height: 1em;
+		white-space: nowrap;
+		box-sizing: border-box;
+	}
+}

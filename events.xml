@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<contact-info>
+
+	<event>
+		<id>1</id>
+		<name>Single Day Event</name>
+		<startdate>2015-12-5</startdate>
+		<enddate></enddate>
+		<color>tomato</color>
+		<url>http://www.google.com</url>
+	</event>
+
+	<event>
+		<id>2</id>
+		<name>Multi Day Event</name>
+		<startdate>2015-12-7</startdate>
+		<enddate>2015-12-11</enddate>
+		<color>dodgerblue</color>
+		<url></url>
+	</event>
+
+	<event>
+		<id>3</id>
+		<name>Several</name>
+		<startdate>2015-12-24</startdate>
+		<enddate>2015-12-24</enddate>
+		<color>firebrick</color>
+		<url></url>
+	</event>
+
+	<event>
+		<id>4</id>
+		<name>Events On</name>
+		<startdate>2015-12-24</startdate>
+		<enddate>2015-12-24</enddate>
+		<color>lightcoral</color>
+		<url></url>
+	</event>
+
+	<event>
+		<id>5</id>
+		<name>One Day</name>
+		<startdate>2015-12-24</startdate>
+		<enddate>2015-12-24</enddate>
+		<color>yellowgreen</color>
+		<url></url>
+	</event>
+
+</contact-info>
