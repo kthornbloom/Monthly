@@ -116,9 +116,21 @@
 			padding-top:30px;
 			line-height: 1.4em;
 		}
+		.resize {
+			background: #222;
+			display: inline-block;
+			padding: 6px 15px;
+			border-radius: 22px;
+			font-size: 13px;
+		}
 		@media (max-height: 700px) {
 			.sticky {
 				position: relative;
+			}
+		}
+		@media (max-width: 600px) {
+			.resize {
+				display: none;
 			}
 		}
 	</style>
@@ -129,6 +141,7 @@
 	<div class="page-contents">
 		<h1>monthly.js</h1>
 		<h2>Example One - Events</h2>
+		<div class="resize">(Resize to see mobile view)</div><br><br>
 		<div style="width:100%; max-width:600px; display:inline-block;">
 			<div class="monthly" id="mycalendar"></div>
 		</div>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<contact-info>
+<monthly>
 
 	<event>
 		<id>1</id>
@@ -46,4 +46,4 @@
 		<url></url>
 	</event>
 
-</contact-info>
+</monthly>
