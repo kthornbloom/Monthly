@@ -168,4 +168,5 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 
 ##Changelog
 v 1.0.1 - Fixed a bug that produced the wrong number of days in the month. (Thanks <a href="https://github.com/igor1980">igor1980</a>)
+
 v 1.0.0 - Launched
