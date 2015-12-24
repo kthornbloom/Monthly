@@ -67,7 +67,7 @@ Smoothslides 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attr
 			$('#' + uniqueId).data('setMonth', m).data('setYear', y);
 
 			// Get number of days
-			var dayQty = daysInMonth(currentMonth, currentYear),
+			var dayQty = daysInMonth(m, y),
 				// Get day of the week the first day is
 				firstDay = new Date(m + ' 1, ' + y).getDay();
 				
