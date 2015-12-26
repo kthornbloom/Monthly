@@ -23,12 +23,16 @@
 		body, html {
 			padding:0px;
 			margin:0px;
-			background: url('images/bg.jpg');
+			background: url('images/bg.jpg') center;
 			background-size:cover;
 			background-attachment: fixed;
+			text-align:center;
 			color:#fff;
 			line-height: 1.4em;
 			font-family: "Trebuchet MS", Helvetica, sans-serif;
+		}
+		body {
+			padding:10vh 0;
 		}
 		h1 {
 			font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -39,36 +43,13 @@
 		h2 {
 			font-family: 'Yanone Kaffeesatz', sans-serif;
 			font-size:30px;
-			color:#222;
-			text-shadow: 0 0 20px #EED5D4;
+			text-shadow: 0 0px 20px rgba(0, 0, 0, 0.3);
+			color:#fff;
 		}
 		.monthly {
-			box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+			box-shadow: 0 13px 40px rgba(0, 0, 0, 0.5);
 		}
-		.page {
-			width:100vw;
-			max-width: 100%;
-			min-height: 100vh;
-			min-height: 100vh;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding:10px;
-			box-sizing:border-box;
-		}
-		.page:nth-child(2) {
-			min-height: auto;
-			padding:50px 0 75px 0;
-			background:rgba(0,0,0,.5);
-		}
-		.page:nth-child(2) h2 {
-			color:#fff;
-			text-shadow:none;
-		}
-		.page-contents {
-			width: 100%;
-			text-align:center;
-		}
+		
 		input[type="text"] {
 			padding: 15px;
 			border-radius: 2px;
@@ -89,25 +70,20 @@
 			background:#eee;
 			color:#222;
 		}
-		.sticky {
-			position: fixed;
-			bottom: 0;
-			width:100%;
-			padding:5px;
-			box-sizing:border-box;
-			text-align: center;
-			background:rgba(11, 13, 13, 0.9);
-		}
+		
 		.button {
 			display: inline-block;
-			padding: 10px 25px;
+			padding: 15px 25px;
+			margin: 25px 0 75px 0;
 			border-radius: 3px;
 			color: #fff;
-			background: #687AA8;
+			background: #000;
+			letter-spacing: .4em;
 			text-decoration: none;
+			font-size: 13px;
 		}
 		.button:hover {
-			background: #4C64A0;
+			background: #3b587a;
 		}
 		.desc {
 			max-width: 250px;
@@ -138,38 +114,19 @@
 </head>
 <body>
 <div class="page">
-	<div class="page-contents">
 		<h1>monthly.js</h1>
-		<h2>Example One - Events</h2>
-		<div class="resize">(Resize to see mobile view)</div><br><br>
+		<h2>Example One - Event Calendar</h2>
 		<div style="width:100%; max-width:600px; display:inline-block;">
 			<div class="monthly" id="mycalendar"></div>
 		</div>
-	</div>
-</div>
-<div class="page">
-	<div class="page-contents">
+		<br><br>
 		<h2>Example Two - Date Picker</h2>
-		<div style="width:250px; display:inline-block;">
-		<input type="text" id="mytarget" value="Select Date">
-		<div class="monthly" id="mycalendar2"></div>
-		<div class="desc">
-		<b>Monthly.js Features:</b>
-		<ul>
-			<li>Unlimited month scrolling</li>
-			<li>'Date Picker' 'Event' or 'Normal' modes</li>
-			<li>Fully responsive design</li>
-			<li>Event list under calendar</li>
-			<li>Mouseover event list to highlight event days</li>
-			<li>Handles multiple calendars on one page</li>
-			<li>Easy customization</li>
-		</ul>
+		<div style="display:inline-block; width:250px;">
+			<input type="text" id="mytarget" value="Select Date">
+			<div class="monthly" id="mycalendar2"></div>
 		</div>
-		</div>
-	</div>
-</div>
-<div class="sticky">
-	<a href="https://github.com/kthornbloom/Monthly" class="button">Download & Docs</a>
+		<br>
+		<a href="https://github.com/kthornbloom/Monthly" class="button">DOWNLOAD / DOCS</a>
 </div>
 <!-- JS ======================================================= --> 
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -186,8 +143,19 @@
 			target: '#mytarget',
 			maxWidth: '250px',
 			startHidden: true,
-			showTrigger: '#mytarget'
+			showTrigger: '#mytarget',
+			stylePast: true,
+			disablePast: true
 		});
+
+	switch(window.location.protocol) {
+	case 'http:':
+	case 'https:':
+	// running on a server, should be good.
+	break;
+	case 'file:':
+	alert('Just a heads-up, events will not work when run locally.');
+	}
 
 	});
 </script>

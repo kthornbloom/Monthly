@@ -3,47 +3,69 @@
 
 	<event>
 		<id>1</id>
-		<name>Single Day Event</name>
-		<startdate>2015-12-5</startdate>
-		<enddate></enddate>
-		<color>tomato</color>
-		<url>http://www.google.com</url>
+		<name>Event Name 1</name>
+		<startdate>2015-12-28</startdate>
+		<enddate>2016-1-1</enddate>
+		<starttime>9:00</starttime>
+		<endtime>10:00</endtime>
+		<color>#ffb128</color>
+		<url></url>
 	</event>
 
 	<event>
 		<id>2</id>
-		<name>Multi Day Event</name>
-		<startdate>2015-12-7</startdate>
-		<enddate>2015-12-11</enddate>
-		<color>dodgerblue</color>
+		<name>Event Name 2</name>
+		<startdate>2016-1-12</startdate>
+		<enddate></enddate>
+		<starttime>10:30</starttime>
+		<endtime>11:00</endtime>
+		<color>#e94b35</color>
 		<url></url>
 	</event>
 
 	<event>
 		<id>3</id>
-		<name>Several</name>
-		<startdate>2015-12-24</startdate>
-		<enddate>2015-12-24</enddate>
-		<color>firebrick</color>
+		<name>Event Name 3</name>
+		<startdate>2016-1-12</startdate>
+		<enddate>2016-1-13</enddate>
+		<starttime>8:30</starttime>
+		<endtime>10:00</endtime>
+		<color>#2c97de</color>
 		<url></url>
 	</event>
 
 	<event>
 		<id>4</id>
-		<name>Events On</name>
-		<startdate>2015-12-24</startdate>
-		<enddate>2015-12-24</enddate>
-		<color>lightcoral</color>
+		<name>Event Name 4</name>
+		<startdate>2016-1-12</startdate>
+		<enddate></enddate>
+		<starttime>7:30</starttime>
+		<endtime>10:00</endtime>
+		<color>#ed7f00</color>
 		<url></url>
 	</event>
 
 	<event>
 		<id>5</id>
-		<name>One Day</name>
-		<startdate>2015-12-24</startdate>
-		<enddate>2015-12-24</enddate>
-		<color>yellowgreen</color>
+		<name>Event Name 5</name>
+		<startdate>2016-1-22</startdate>
+		<enddate></enddate>
+		<starttime></starttime>
+		<endtime></endtime>
+		<color>#733047</color>
 		<url></url>
 	</event>
+
+	<event>
+		<id>6</id>
+		<name>Event Name 5</name>
+		<startdate>2016-1-26</startdate>
+		<enddate>2016-1-27</enddate>
+		<starttime></starttime>
+		<endtime></endtime>
+		<color>#7d8b25</color>
+		<url></url>
+	</event>
+
 
 </monthly>

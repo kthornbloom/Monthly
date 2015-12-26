@@ -6,13 +6,12 @@ A jQuery based responsive calendar plugin.
 
 ##Features
 
-- Unlimited month scrolling
-- 'Datepicker' 'Event' or 'Normal' modes
+- Use as a date picker, or a full fledged calendar
 - Fully responsive design
-- Intuitive event labels & highlighting
-- Event list under calendar
-- Handles multiple instances
-- Easy customization
+- Intuitive event labels
+- Event list detail mode
+- Handles multiple instances on the same page
+- Well commented code for easy customization
 
 ##Usage
 - Simply add a div with a class of "monthly" and a unique id. 
@@ -50,11 +49,13 @@ A jQuery based responsive calendar plugin.
 
 	<event>
 		<id>1</id>
-		<name>Single Day Event</name>
-		<startdate>2015-12-5</startdate>
-		<enddate>2015-12-15</enddate>
-		<color>#222</color>
-		<url>http://www.google.com</url>
+		<name>Event Name 1</name>
+		<startdate>2015-12-28</startdate>
+		<enddate>2016-1-1</enddate> <!-- optional -->
+		<starttime>9:00</starttime> <!-- optional -->
+		<endtime>10:00</endtime> <!-- optional -->
+		<color>#ffb128</color> <!-- optional -->
+		<url>http://www.yourlink.com</url> <!-- optional -->
 	</event>
 
 </monthly>
@@ -86,7 +87,11 @@ $('#mycalendar2').monthly({
 	// Set to true if you want monthly to appear on click
 	startHidden: true,
 	// Element that you click to make it appear
-	showTrigger: '#mytarget'
+	showTrigger: '#mytarget',
+	// Add a style to days in the past
+	stylePast: true,
+	// Disable clicking days in the past
+	disablePast: true
 });
 ```
 
@@ -146,6 +151,18 @@ $('#mycalendar2').monthly({
 		<td>'#example'</td>
 		<td>''</td>
 	</tr>
+	<tr>
+		<td>stylePast</td>
+		<td>Add style to days in the past</td>
+		<td>true or false</td>
+		<td>false</td>
+	</tr>
+	<tr>
+		<td>disablePast</td>
+		<td>Prevent clicking on past days (Date Picker mode only)</td>
+		<td>true or false</td>
+		<td>false</td>
+	</tr>
 </tbody></table>
 
 ##Licensing
@@ -167,6 +184,7 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 - First of all... you sound like you need to chill out. Secondly, this calendar isn't meant to do everything under the sun, but rather be a simple solution to most calendar related problems. Maybe check out <a href="http://fullcalendar.io/">Fullcalendar</a>
 
 ##Changelog
+v 2.0.0 - New method for viewing event details within the calendar rather than a separate list. Added ability to have event times.
 v 1.0.1 - Fixed a bug that produced the wrong number of days in the month. (Thanks <a href="https://github.com/igor1980">igor1980</a>)
 
 v 1.0.0 - Launched
