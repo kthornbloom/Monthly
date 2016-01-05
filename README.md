@@ -1,5 +1,7 @@
 #Monthly.js
 A jQuery based responsive calendar plugin.
+#WARNING:
+Currently working out bugs in various browsers. Probably don't use in production yet.
 
 ##Demo
 <a href="http://kthornbloom.com/monthly" target="_blank">View Demo</a>
