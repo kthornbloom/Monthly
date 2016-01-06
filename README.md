@@ -186,11 +186,8 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 
 ##Changelog
 
-<<<<<<< HEAD
 v 2.0.2 - Fixed a bug caused by using zero indexed days or months in the xml file. Fixed another bug where setting eventList to false didn't work.
 
-=======
->>>>>>> origin/master
 v 2.0.1 - Fixed a ton o' bugs in IE & Safari related to incorrect setting of the first day, day heights, and the event listing day names.
 
 v 2.0.0 - New method for viewing event details within the calendar rather than a separate list. Added ability to have event times.
