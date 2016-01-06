@@ -1,5 +1,5 @@
 /*
-Monthly 2.0.0 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.0.1 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function($) {
@@ -76,8 +76,8 @@ Monthly 2.0.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// Get number of days
 			var dayQty = daysInMonth(m, y),
 				// Get day of the week the first day is
-				firstDay = new Date(m + ' 1, ' + y).getDay();
-				
+				mZeroed = m -1,
+				firstDay = new Date(y, mZeroed, 1, 0, 0, 0, 0).getDay();
 
 			// Remove old days
 			$('#' + uniqueId + ' .monthly-day, #' + uniqueId + ' .monthly-day-blank').remove();
@@ -86,11 +86,8 @@ Monthly 2.0.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			if (options.mode == 'event') {
 				for(var i = 0; i < dayQty; i++) {
 					
-					// Fix 0 indexed days
-					var day = i + 1;
-					var givendate = y+'-'+m+'-'+day;
-					var date = new Date(givendate);
-					var dayNamenum = date.getDay();
+					var day = i + 1; // Fix 0 indexed days
+					var dayNamenum = new Date(y, mZeroed, day, 0, 0, 0, 0).getDay()
 
 					$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="monthly-day monthly-day-event" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
 					$('#' + uniqueId + ' .monthly-event-list').append('<div class="monthly-list-item" id="'+uniqueId+'day'+day+'" data-number="'+day+'"><div class="monthly-event-list-date">'+dayNames[dayNamenum]+'<br>'+day+'</div></div>');

@@ -101,9 +101,6 @@
 /* Calendar Days */
 .monthly-day, .monthly-day-blank {
 	width: calc(100% / 7);
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	box-sizing:border-box;
 	position: relative;
 	font-weight: bold;
@@ -262,6 +259,8 @@
 	text-align: center;
 	line-height: 0;
 	max-width: 20px;
+	margin:0 auto;
+	padding-top:40%;
 }
 
 /* Event indicator dots */
@@ -390,6 +389,9 @@
 	.monthly-day-event > .monthly-indicator-wrap {
 		width:100%;
 		max-width: none;
+	}
+	.monthly-indicator-wrap {
+		padding:0;
 	}
 	.monthly-day .monthly-event-indicator {
 		display: block;
