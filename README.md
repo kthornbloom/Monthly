@@ -82,6 +82,7 @@ To function as a date picker, simply set options to tell Monthly how you'd like 
 
 ```
 $('#mycalendar2').monthly({
+	mode: 'picker',
 	// The element that will have its value set to the date you picked
 	target: '#mytarget',
 	// Set to true if you want monthly to appear on click
@@ -112,7 +113,7 @@ $('#mycalendar2').monthly({
 	<tr>
 		<td>mode</td>
 		<td>Events mode or normal?</td>
-		<td>'event' or ''</td>
+		<td>'event' or 'picker'</td>
 		<td>''</td>
 	</tr>
 	<tr>
@@ -184,8 +185,13 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 - First of all... you sound like you need to chill out. Secondly, this calendar isn't meant to do everything under the sun, but rather be a simple solution to most calendar related problems. Maybe check out <a href="http://fullcalendar.io/">Fullcalendar</a>
 
 ##Changelog
+
+v 2.0.2 - Fixed a bug caused by using zero indexed days or months in the xml file. Fixed another bug where setting eventList to false didn't work.
+
 v 2.0.1 - Fixed a ton o' bugs in IE & Safari related to incorrect setting of the first day, day heights, and the event listing day names.
+
 v 2.0.0 - New method for viewing event details within the calendar rather than a separate list. Added ability to have event times.
+
 v 1.0.1 - Fixed a bug that produced the wrong number of days in the month. (Thanks <a href="https://github.com/igor1980">igor1980</a>)
 
 v 1.0.0 - Launched

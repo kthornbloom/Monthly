@@ -15,7 +15,7 @@
 	<event>
 		<id>2</id>
 		<name>Event Name 2</name>
-		<startdate>2016-1-12</startdate>
+		<startdate>2016-1-02</startdate>
 		<enddate></enddate>
 		<starttime>10:30</starttime>
 		<endtime>11:00</endtime>
@@ -58,7 +58,7 @@
 
 	<event>
 		<id>6</id>
-		<name>Event Name 5</name>
+		<name>Event Name 6</name>
 		<startdate>2016-1-26</startdate>
 		<enddate>2016-1-27</enddate>
 		<starttime></starttime>
@@ -66,6 +66,5 @@
 		<color>#7d8b25</color>
 		<url></url>
 	</event>
-
 
 </monthly>
