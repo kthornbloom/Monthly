@@ -140,9 +140,18 @@
 }
 
 /* Non-Event calendar day number styles */
+.monthly-day-pick {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
 .monthly-day-pick > .monthly-day-number {
 	line-height: 1em;
 	font-size:11px;
+}
+
+.monthly-day-pick > .monthly-indicator-wrap {
+	margin:0;
 }
 
 /* Days in the past in "picker" mode */
