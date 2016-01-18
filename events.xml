@@ -9,7 +9,7 @@
 		<starttime>9:00</starttime>
 		<endtime>10:00</endtime>
 		<color>#ffb128</color>
-		<url></url>
+		<url>http://www.google.com</url>
 	</event>
 
 	<event>
@@ -20,7 +20,7 @@
 		<starttime>10:30</starttime>
 		<endtime>11:00</endtime>
 		<color>#e94b35</color>
-		<url></url>
+		<url>http://www.google.com</url>
 	</event>
 
 	<event>

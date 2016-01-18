@@ -141,13 +141,11 @@
 
 /* Non-Event calendar day number styles */
 .monthly-day-pick {
-	display:flex;
-	align-items:center;
-	justify-content:center;
 }
 .monthly-day-pick > .monthly-day-number {
 	line-height: 1em;
 	font-size:11px;
+	padding-top:35%;
 }
 
 .monthly-day-pick > .monthly-indicator-wrap {
@@ -181,6 +179,10 @@
 	height: 18px;
 	line-height: 18px;
 	text-align: center;
+}
+.monthly-day-pick.monthly-today .monthly-day-number {
+	padding:0;
+	margin:22%;
 }
 
 /* Button to reset to current month */
@@ -291,7 +293,7 @@
 }
 /* Listing of events under calendar */
 .monthly-event-list {
-	background: rgba(233, 235, 236, 0.58);
+	background: rgba(233, 235, 236, 0.9);
 	overflow: auto;
 	position: absolute;
 	top: 42px;

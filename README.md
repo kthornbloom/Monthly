@@ -186,6 +186,8 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 
 ##Changelog
 
+v 2.0.3 - Fixed a big caused by using Monday as the start of the week, and months where the first day is Sunday.
+
 v 2.0.2 - Fixed a bug caused by using zero indexed days or months in the xml file. Fixed another bug where setting eventList to false didn't work.
 
 v 2.0.1 - Fixed a ton o' bugs in IE & Safari related to incorrect setting of the first day, day heights, and the event listing day names.

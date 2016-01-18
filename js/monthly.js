@@ -1,5 +1,5 @@
 /*
-Monthly 2.0.2 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function($) {
@@ -71,7 +71,6 @@ Monthly 2.0.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		// Massive function to build the month
 		function setMonthly(m, y){
 			$('#' + uniqueId).data('setMonth', m).data('setYear', y);
-			$('#' + uniqueId+ ' .monthly-event-list').prepend('bro.');
 
 			// Get number of days
 			var dayQty = daysInMonth(m, y),
@@ -120,12 +119,15 @@ Monthly 2.0.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			} else {
 				$('#' + uniqueId + ' .monthly-header-title').html(monthNames[m - 1] +' '+ y +'<a href="#" class="monthly-reset" title="Back To This Month"></a> ');
 			}
-			
 
 			// Account for empty days at start
 			if(options.weekStart == 'Sun' && firstDay != 7) {
 				for(var i = 0; i < firstDay; i++) {
 					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="monthly-day-blank"><div class="monthly-day-number"></div></div>');
+				}
+			} else if (options.weekStart == 'Mon' && firstDay == 0) {
+				for(var i = 0; i < 6; i++) {
+					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="monthly-day-blank" ><div class="monthly-day-number"></div></div>');
 				}
 			} else if (options.weekStart == 'Mon' && firstDay != 1) {
 				for(var i = 0; i < (firstDay - 1); i++) {
@@ -322,10 +324,6 @@ Monthly 2.0.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		// Back to month view
 		$(document.body).on('click', '#'+uniqueId+' .monthly-cal', function (e) {
 			$(this).remove();
-			$('#' + uniqueId + ' .monthly-day-wrap, #'+uniqueId+' .monthly-day-title-wrap').css({
-					'filter':'blur(0px)',
-					'webkitFilter':'blur(0px)'
-				});
 				$('#' + uniqueId+' .monthly-event-list').css('transform','scale(0)').delay('800').hide();
 			e.preventDefault();
 		});
@@ -335,10 +333,6 @@ Monthly 2.0.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// If events, show events list
 			if(options.mode == 'event' && options.eventList == true) {
 				var whichDay = $(this).data('number');
-				$('#' + uniqueId + ' .monthly-day-wrap, #'+uniqueId+' .monthly-day-title-wrap').css({
-					'filter':'blur(10px)',
-					'webkitFilter':'blur(10px)'
-				});
 				$('#' + uniqueId+' .monthly-event-list').show();
 				$('#' + uniqueId+' .monthly-event-list').css('transform');
 				$('#' + uniqueId+' .monthly-event-list').css('transform','scale(1)');
