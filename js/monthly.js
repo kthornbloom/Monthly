@@ -9,7 +9,9 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			var defaults = {
 				weekStart: 'Sun',
 				mode: '',
+				calendarPeriod : new Date(),
 				xmlUrl: '',
+				jsonObj: {},
 				target: '',
 				eventList: true,
 				maxWidth: false,
@@ -22,7 +24,8 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			var options = $.extend(defaults, options),
 				that = this,
 				uniqueId = $(this).attr('id'),
-				d = new Date(),
+				//d = new Date(),
+				d = options.calendarPeriod,
 				currentMonth = d.getMonth() + 1,
 				currentYear = d.getFullYear(),
 				currentDay = d.getDate(),
@@ -82,7 +85,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			$('#' + uniqueId + ' .monthly-day, #' + uniqueId + ' .monthly-day-blank').remove();
 			$('#'+uniqueId+' .monthly-event-list').empty();
 			// Print out the days
-			if (options.mode == 'event') {
+			if (options.mode == 'event' || options.mode == 'eventByJson') {
 				for(var i = 0; i < dayQty; i++) {
 					
 					var day = i + 1; // Fix 0 indexed days
@@ -109,8 +112,13 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// Set Today
 			var setMonth = $('#' + uniqueId).data('setMonth'),
 				setYear = $('#' + uniqueId).data('setYear');
-			if (setMonth == currentMonth && setYear == currentYear) {
-				$('#' + uniqueId + ' *[data-number="'+currentDay+'"]').addClass('monthly-today');
+			var _today = new Date();
+			_todayYear = _today.getFullYear();
+			_todayMonth = _today.getMonth() +1;
+			_todayDay = _today.getDay();
+			//if (setMonth == currentMonth && setYear == currentYear) {
+			if(setMonth == _todayMonth && setYear == _todayYear){
+				$('#' + uniqueId + ' *[data-number="'+_todayDay+'"]').addClass('monthly-today');
 			}
 
 			// Reset button
@@ -265,6 +273,134 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				});
 
 			}
+			else if (options.mode == 'eventByJson') {
+				console.log('eventByJson');
+				var jsonObj = options.jsonObj;
+
+				// console.dir(options)
+				console.dir(options.jsonObj)
+				// console.dir(options.jsonObj2)
+				// console.dir(options.jsonObj3)
+				// console.dir(options.jsonObj4)
+
+				var count = $(jsonObj).find('Row');
+				console.dir(count.length);
+				//for(var singleRow in jsonObj){
+					$(jsonObj).find('Row').each(function(index, element){
+
+						var singleRow = element;
+
+						// Year [0]   Month [1]   Day [2]						
+						var fullstartDate = $(this).find('startdate').text(),
+							startArr = fullstartDate.split("-"),
+							startYear = startArr[0],
+							startMonth = parseInt(startArr[1], 10),
+							startDay = parseInt(startArr[2], 10),
+							fullendDate = $(this).find('enddate').text(),
+							endArr = fullendDate.split("-"),
+							endYear = endArr[0],
+							endMonth = parseInt(endArr[1], 10),
+							endDay = parseInt(endArr[2], 10),
+							eventURL = $(this).find('url').text(),
+							eventTitle = $(this).find('name').text(),
+							eventColor = $(this).find('color').text(),
+							eventId = $(this).find('id').text(),
+							startTime = $(this).find('starttime').text(),
+							startSplit = startTime.split(":");
+							startPeriod = 'AM',
+							endTime = $(this).find('endtime').text(),
+							endSplit = endTime.split(":");
+							endPeriod = 'AM',
+							eventLink = '';
+
+						/* Convert times to 12 hour & determine AM or PM */
+						if(parseInt(startSplit[0]) >= 12) {
+							var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
+							var startPeriod = 'PM'
+						}
+						
+
+						if(parseInt(startTime) == 0) {
+							var startTime = '12:'+startSplit[1]+'';
+						}
+
+						if(parseInt(endSplit[0]) >= 12) {
+							var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
+							var endPeriod = 'PM'
+						}
+						if(parseInt(endTime) == 0) {
+							var endTime = '12:'+endSplit[1]+'';
+						}
+						if (eventURL){
+							var eventLink = 'href="'+eventURL+'"';
+						}
+
+						// function to print out list for multi day events
+						function multidaylist(){
+							$('#'+uniqueId+' .monthly-list-item[data-number="'+i+'"]').addClass('item-has-event').append('<a href="'+eventURL+'" class="listed-event"  data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'<div><div class="monthly-list-time-start">'+startTime+' '+startPeriod+'</div><div class="monthly-list-time-end">'+endTime+' '+endPeriod+'</div></div></a>');
+						}
+						
+
+						// If event is one day & within month
+						if (!fullendDate && startMonth == setMonth && startYear == setYear) {
+							// Add Indicators
+							$('#'+uniqueId+' *[data-number="'+startDay+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator"  data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
+							// Print out event list for single day event
+							$('#'+uniqueId+' .monthly-list-item[data-number="'+startDay+'"]').addClass('item-has-event').append('<a href="'+eventURL+'" class="listed-event"  data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'<div><div class="monthly-list-time-start">'+startTime+' '+startPeriod+'</div><div class="monthly-list-time-end">'+endTime+' '+endPeriod+'</div></div></a>');
+
+
+						// If event is multi day & within month
+						} else if (startMonth == setMonth && startYear == setYear && endMonth == setMonth && endYear == setYear){
+							for(var i = parseInt(startDay); i <= parseInt(endDay); i++) {
+								// If first day, add title 
+								if (i == parseInt(startDay)) {
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
+								} else {
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'"></div>');
+								}
+								multidaylist();
+							}
+
+						// If event is multi day, starts in prev month, and ends in current month
+						} else if ((endMonth == setMonth && endYear == setYear) && ((startMonth < setMonth && startYear == setYear) || (startYear < setYear))) {
+							for(var i = 0; i <= parseInt(endDay); i++) {
+								// If first day, add title 
+								if (i==1){
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
+								} else {
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'"></div>');
+								}
+								multidaylist();
+							}
+
+						// If event is multi day, starts in this month, but ends in next
+						} else if ((startMonth == setMonth && startYear == setYear) && ((endMonth > setMonth && endYear == setYear) || (endYear > setYear))){
+							for(var i = parseInt(startDay); i <= dayQty; i++) {
+								// If first day, add title 
+								if (i == parseInt(startDay)) {
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
+								} else {
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'"></div>');
+								}
+								multidaylist();
+							}
+
+						// If event is multi day, starts in a prev month, ends in a future month
+						} else if (((startMonth < setMonth && startYear == setYear) || (startYear < setYear)) && ((endMonth > setMonth && endYear == setYear) || (endYear > setYear))){
+							for(var i = 0; i <= dayQty; i++) {
+								// If first day, add title 
+								if (i == 1){
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
+								} else {
+									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'"></div>');
+								}
+								multidaylist();
+							}
+
+						}
+					});
+				//}
+			}
 			
 		}
 
@@ -331,7 +467,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		// Click A Day
 		$(document.body).on('click', '#'+uniqueId+' a.monthly-day', function (e) {
 			// If events, show events list
-			if(options.mode == 'event' && options.eventList == true) {
+			if((options.mode == 'event' || options.mode == 'eventByJson') && options.eventList == true) {
 				var whichDay = $(this).data('number');
 				$('#' + uniqueId+' .monthly-event-list').show();
 				$('#' + uniqueId+' .monthly-event-list').css('transform');
