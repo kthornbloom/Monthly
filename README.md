@@ -164,26 +164,6 @@ $('#mycalendar2').monthly({
 	</tr>
 </tbody></table>
 
-##Browser Support
-<table>
-    <tr>
-        <td>IE</td>
-        <td>Edge</td>
-        <td>Chrome</td>
-        <td>Firefox</td>
-        <td>iOS</td>
-        <td>Android</td>
-    </tr>
-    <tr>
-        <td><span color="red">11+</span></td>
-        <td>✓</td>
-        <td>✓</td>
-        <td>✓</td>
-        <td>✓</td>
-        <td>✓</td>
-    </tr>
-</table>
-
 ##Licensing
 Free to use and modify personally or commercially. Not for resale.
 
@@ -191,6 +171,8 @@ Free to use and modify personally or commercially. Not for resale.
 Submit issues or feature requests here on Github. Connect with me on <a href="https://twitter.com/kthornbloom" target="_blank">twitter for quick questions.</a>
 
 ##FAQs
+<b>Browser Support?</b>
+- Essentially, all browsers except IE10 and down due to flexbox. 
 
 <b>Events aren't working!</b>
 - They won't work in a local environment, or if the XML is at another domain.
