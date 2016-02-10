@@ -1,7 +1,5 @@
 #Monthly.js
 A jQuery based responsive calendar plugin.
-
-##Demo
 <a href="http://kthornbloom.com/monthly" target="_blank">View Demo</a>
 
 ##Features
@@ -14,7 +12,7 @@ A jQuery based responsive calendar plugin.
 - Well commented code for easy customization
 
 ##Usage
-- Simply add a div with a class of "monthly" and a unique id. 
+- Simply add a div with a class of "monthly" and a unique id.
 
 ```
 <div class="monthly" id="mycalendar"></div>
@@ -62,7 +60,7 @@ A jQuery based responsive calendar plugin.
 ```
 
 - The 'id' fields don't neccessarily need to be in any particular order, but make sure they are unique to each event.
-- Dates must be in the YYYY-MM-D format in your XML. 
+- Dates must be in the YYYY-MM-D format in your XML.
 - If it is a single day event, leave the 'enddate' field blank
 - The 'color' field allows you to set a custom color for that event's indicator.
 - The 'url' field will be the location of the link on the event
@@ -166,8 +164,28 @@ $('#mycalendar2').monthly({
 	</tr>
 </tbody></table>
 
+##Browser Support
+<table>
+    <tr>
+        <td>IE</td>
+        <td>Edge</td>
+        <td>Chrome</td>
+        <td>Firefox</td>
+        <td>iOS</td>
+        <td>Android</td>
+    </tr>
+    <tr>
+        <td><span color="red">11+</span></td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
+    </tr>
+</table>
+
 ##Licensing
-Free to use and modify personally or commercially. Not for resale. 
+Free to use and modify personally or commercially. Not for resale.
 
 ##Help & Feedback
 Submit issues or feature requests here on Github. Connect with me on <a href="https://twitter.com/kthornbloom" target="_blank">twitter for quick questions.</a>
@@ -185,6 +203,8 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 - First of all... you sound like you need to chill out. Secondly, this calendar isn't meant to do everything under the sun, but rather be a simple solution to most calendar related problems. Maybe check out <a href="http://fullcalendar.io/">Fullcalendar</a>
 
 ##Changelog
+
+v 2.0.4 - Added more vendor prefixes to support older versions of iOS
 
 v 2.0.3 - Fixed a big caused by using Monday as the start of the week, and months where the first day is Sunday.
 

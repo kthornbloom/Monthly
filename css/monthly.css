@@ -45,7 +45,8 @@
 	width:5px;
 	height:5px;
 	margin:-3px 0 0 -5px;
-	transform:rotate(45deg) ;
+	-webkit-transform:rotate(45deg) ;
+	        transform:rotate(45deg) ;
 }
 /* wrapper for right button to make the clickable area bigger */
 .monthly-next {
@@ -70,11 +71,15 @@
 	width:5px;
 	height:5px;
 	margin:-3px 0 0 -5px;
-	transform:rotate(45deg) ;
+	-webkit-transform:rotate(45deg) ;
+	        transform:rotate(45deg) ;
 }
 
 /* Day of the week headings */
 .monthly-day-title-wrap {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	background: #fff;
 	border-bottom: 1px solid #EBEBEB;
@@ -91,9 +96,16 @@
 
 /* Calendar days wrapper */
 .monthly-day-wrap {
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-ms-flexbox;
 	display:flex;
-	flex-wrap:wrap;
-	align-content:stretch;
+	-webkit-flex-wrap:wrap;
+	    -ms-flex-wrap:wrap;
+	        flex-wrap:wrap;
+	-webkit-align-content:stretch;
+	    -ms-flex-line-pack:stretch;
+	        align-content:stretch;
 	width:100%;
 	overflow: hidden;
 }
@@ -107,6 +119,7 @@
 	color:inherit;
 	background: #fff;
 	box-shadow: 0 0 0 1px #EBEBEB;
+	-webkit-transition: .25s;
 	transition:.25s;
 	padding:0;
 	text-decoration: none;
@@ -157,8 +170,10 @@
 	content: '';
 	width: 150%;
 	height: 2px;
-	transform-origin: left top;
-	transform: rotate(45deg);
+	-webkit-transform-origin: left top;
+	        transform-origin: left top;
+	-webkit-transform: rotate(45deg);
+	        transform: rotate(45deg);
 	background: rgba(0, 0, 0, 0.1);
 	position: absolute;
 	left: 0;
@@ -300,8 +315,10 @@
 	width: 100%;
 	height: calc(100% - 42px);
 	display: none;
+	-webkit-transition: .25s;
 	transition:.25s;
-	transform:scale(0);
+	-webkit-transform:scale(0);
+	        transform:scale(0);
 }
 
 /* Days in Events List */
@@ -369,10 +386,10 @@
 /* Events List custom webkit scrollbar */
 
 .monthly-event-list::-webkit-scrollbar {width: 9px;}
- 
+
 /* Track */
 .monthly-event-list::-webkit-scrollbar-track {background: none;}
- 
+
 /* Handle */
 .monthly-event-list::-webkit-scrollbar-thumb {
 	background:#ccc;

@@ -1,5 +1,5 @@
 /*
-Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function($) {
@@ -84,7 +84,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// Print out the days
 			if (options.mode == 'event') {
 				for(var i = 0; i < dayQty; i++) {
-					
+
 					var day = i + 1; // Fix 0 indexed days
 					var dayNamenum = new Date(y, mZeroed, day, 0, 0, 0, 0).getDay()
 
@@ -104,7 +104,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					}
 				}
 			}
-			
+
 
 			// Set Today
 			var setMonth = $('#' + uniqueId).data('setMonth'),
@@ -181,7 +181,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
 							var startPeriod = 'PM'
 						}
-						
+
 
 						if(parseInt(startTime) == 0) {
 							var startTime = '12:'+startSplit[1]+'';
@@ -202,7 +202,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						function multidaylist(){
 							$('#'+uniqueId+' .monthly-list-item[data-number="'+i+'"]').addClass('item-has-event').append('<a href="'+eventURL+'" class="listed-event"  data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'<div><div class="monthly-list-time-start">'+startTime+' '+startPeriod+'</div><div class="monthly-list-time-end">'+endTime+' '+endPeriod+'</div></div></a>');
 						}
-						
+
 
 						// If event is one day & within month
 						if (!fullendDate && startMonth == setMonth && startYear == setYear) {
@@ -215,7 +215,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						// If event is multi day & within month
 						} else if (startMonth == setMonth && startYear == setYear && endMonth == setMonth && endYear == setYear){
 							for(var i = parseInt(startDay); i <= parseInt(endDay); i++) {
-								// If first day, add title 
+								// If first day, add title
 								if (i == parseInt(startDay)) {
 									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
 								} else {
@@ -227,7 +227,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						// If event is multi day, starts in prev month, and ends in current month
 						} else if ((endMonth == setMonth && endYear == setYear) && ((startMonth < setMonth && startYear == setYear) || (startYear < setYear))) {
 							for(var i = 0; i <= parseInt(endDay); i++) {
-								// If first day, add title 
+								// If first day, add title
 								if (i==1){
 									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
 								} else {
@@ -239,7 +239,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						// If event is multi day, starts in this month, but ends in next
 						} else if ((startMonth == setMonth && startYear == setYear) && ((endMonth > setMonth && endYear == setYear) || (endYear > setYear))){
 							for(var i = parseInt(startDay); i <= dayQty; i++) {
-								// If first day, add title 
+								// If first day, add title
 								if (i == parseInt(startDay)) {
 									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
 								} else {
@@ -251,7 +251,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						// If event is multi day, starts in a prev month, ends in a future month
 						} else if (((startMonth < setMonth && startYear == setYear) || (startYear < setYear)) && ((endMonth > setMonth && endYear == setYear) || (endYear > setYear))){
 							for(var i = 0; i <= dayQty; i++) {
-								// If first day, add title 
+								// If first day, add title
 								if (i == 1){
 									$('#'+uniqueId+' *[data-number="'+i+'"] .monthly-indicator-wrap').append('<div class="monthly-event-indicator" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+'</div>');
 								} else {
@@ -265,7 +265,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				});
 
 			}
-			
+
 		}
 
 		// Set the calendar the first time
@@ -364,7 +364,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			}
 			e.preventDefault();
 		});
-		
+
 		// Clicking an event within the list
 		$(document.body).on('click', '#'+uniqueId+' .listed-event', function (e) {
 			var href = $(this).attr('href');
