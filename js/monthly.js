@@ -115,7 +115,7 @@ Monthly 2.0.3 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			var _today = new Date();
 			_todayYear = _today.getFullYear();
 			_todayMonth = _today.getMonth() +1;
-			_todayDay = _today.getDay();
+			_todayDay = _today.getDate();
 			//if (setMonth == currentMonth && setYear == currentYear) {
 			if(setMonth == _todayMonth && setYear == _todayYear){
 				$('#' + uniqueId + ' *[data-number="'+_todayDay+'"]').addClass('monthly-today');
