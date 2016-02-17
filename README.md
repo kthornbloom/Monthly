@@ -1,7 +1,9 @@
 #Monthly.js
 A jQuery based responsive calendar plugin by <a href="https://twitter.com/kthornbloom" target="_blank">@kthornbloom</a>
 
-<a href="http://kthornbloom.com/monthly" target="_blank">View Demo</a>
+<a href="http://kthornbloom.com/monthly" target="_blank">Live Demo</a>
+
+<img src="http://kthornbloom.com/monthly/cal-lg.gif"/>
 
 ##Features
 
@@ -17,6 +19,9 @@ View the <a href="https://github.com/kthornbloom/Monthly/wiki">wiki</a>.
 
 ##Bugs
 If you've spotted an issue, please create an <a href="https://github.com/kthornbloom/Monthly/issues">issue</a>.
+
+##Support
+Did this plugin help you out? Support open source development! <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6GHHZGMCV5GNE">Donate Via Paypal</a>
 
 ##Changelog
 
