@@ -172,7 +172,7 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 
 ##FAQs
 <b>Browser Support?</b>
-- Essentially, all browsers except IE10 and down due to flexbox. 
+- Everything back to IE9. If you spot a bug, please open and issue here. 
 
 <b>Events aren't working!</b>
 - They won't work in a local environment, or if the XML is at another domain.
@@ -185,6 +185,8 @@ Submit issues or feature requests here on Github. Connect with me on <a href="ht
 - First of all... you sound like you need to chill out. Secondly, this calendar isn't meant to do everything under the sun, but rather be a simple solution to most calendar related problems. Maybe check out <a href="http://fullcalendar.io/">Fullcalendar</a>
 
 ##Changelog
+
+v 2.0.5 - Dropped flexbox 😞 in favor of display:table-cell to support 💩💩IE9💩💩
 
 v 2.0.4 - Added more vendor prefixes to support older versions of iOS
 
