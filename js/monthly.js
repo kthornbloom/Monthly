@@ -1,5 +1,5 @@
 /*
-Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.0.5 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function($) {
@@ -13,6 +13,7 @@ Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				target: '',
 				eventList: true,
 				maxWidth: false,
+				setWidth: false,
 				startHidden: false,
 				showTrigger: '',
 				stylePast: false,
@@ -31,6 +32,9 @@ Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		if (options.maxWidth != false){
 			$('#'+uniqueId).css('maxWidth',options.maxWidth);
+		}
+		if (options.setWidth != false){
+			$('#'+uniqueId).css('width',options.setWidth);
 		}
 
 		if (options.startHidden == true){
@@ -88,7 +92,7 @@ Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					var day = i + 1; // Fix 0 indexed days
 					var dayNamenum = new Date(y, mZeroed, day, 0, 0, 0, 0).getDay()
 
-					$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="monthly-day monthly-day-event" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
+					$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="m-d monthly-day monthly-day-event" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
 					$('#' + uniqueId + ' .monthly-event-list').append('<div class="monthly-list-item" id="'+uniqueId+'day'+day+'" data-number="'+day+'"><div class="monthly-event-list-date">'+dayNames[dayNamenum]+'<br>'+day+'</div></div>');
 				}
 			} else {
@@ -98,9 +102,9 @@ Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 					// Check if it's a day in the past
 					if(((day < currentDay && m === currentMonth) || y < currentYear || (m < currentMonth && y == currentYear)) && options.stylePast == true){
-							$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="monthly-day monthly-day-pick monthly-past-day" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
+							$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="m-d monthly-day monthly-day-pick monthly-past-day" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
 					} else {
-						$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="monthly-day monthly-day-pick" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
+						$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="m-d monthly-day monthly-day-pick" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
 					}
 				}
 			}
@@ -123,15 +127,15 @@ Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// Account for empty days at start
 			if(options.weekStart == 'Sun' && firstDay != 7) {
 				for(var i = 0; i < firstDay; i++) {
-					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="monthly-day-blank"><div class="monthly-day-number"></div></div>');
+					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="m-d monthly-day-blank"><div class="monthly-day-number"></div></div>');
 				}
 			} else if (options.weekStart == 'Mon' && firstDay == 0) {
 				for(var i = 0; i < 6; i++) {
-					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="monthly-day-blank" ><div class="monthly-day-number"></div></div>');
+					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="m-d monthly-day-blank" ><div class="monthly-day-number"></div></div>');
 				}
 			} else if (options.weekStart == 'Mon' && firstDay != 1) {
 				for(var i = 0; i < (firstDay - 1); i++) {
-					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="monthly-day-blank" ><div class="monthly-day-number"></div></div>');
+					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="m-d monthly-day-blank" ><div class="monthly-day-number"></div></div>');
 				}
 			}
 
@@ -143,7 +147,7 @@ Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				daysdiff = roundup - totaldays;
 			if(totaldays % 7 != 0) {
 				for(var i = 0; i < daysdiff; i++) {
-					$('#' + uniqueId + ' .monthly-day-wrap').append('<div class="monthly-day-blank"><div class="monthly-day-number"></div></div>');
+					$('#' + uniqueId + ' .monthly-day-wrap').append('<div class="m-d monthly-day-blank"><div class="monthly-day-number"></div></div>');
 				}
 			}
 
@@ -265,7 +269,10 @@ Monthly 2.0.4 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				});
 
 			}
-
+			var divs = $("#"+uniqueId+" .m-d");
+			for(var i = 0; i < divs.length; i+=7) {
+			  divs.slice(i, i+7).wrapAll("<div class='monthly-week'></div>");
+			}
 		}
 
 		// Set the calendar the first time

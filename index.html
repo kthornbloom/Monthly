@@ -2,21 +2,21 @@
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta charset='utf-8'> 
+<meta charset='utf-8'>
 <head>
 <!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<!-- META ===================================================== --> 
-    <title>Monthly - A jQuery Calendar Plugin</title> 
-    <meta name="description" content="A method for responsive tables"> 
+<!-- META ===================================================== -->
+    <title>Monthly - A jQuery Calendar Plugin</title>
+    <meta name="description" content="A method for responsive tables">
 
-<!-- Favicon  ========================================== --> 
-	
+<!-- Favicon  ========================================== -->
 
-<!-- CSS ====================================================== 
-	<link rel="stylesheet" href="css/responsivetables.css">--> 
+
+<!-- CSS ======================================================
+	<link rel="stylesheet" href="css/responsivetables.css">-->
 	<!-- Demo CSS (don't use) -->
 	<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
 	<style type="text/css">
@@ -49,7 +49,7 @@
 		.monthly {
 			box-shadow: 0 13px 40px rgba(0, 0, 0, 0.5);
 		}
-		
+
 		input[type="text"] {
 			padding: 15px;
 			border-radius: 2px;
@@ -70,7 +70,7 @@
 			background:#eee;
 			color:#222;
 		}
-		
+
 		.button {
 			display: inline-block;
 			padding: 15px 25px;
@@ -128,7 +128,7 @@
 		<br>
 		<a href="https://github.com/kthornbloom/Monthly" class="button">DOWNLOAD / DOCS</a>
 </div>
-<!-- JS ======================================================= --> 
+<!-- JS ======================================================= -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/monthly.js"></script>
 <script type="text/javascript">
@@ -138,11 +138,11 @@
 			mode: 'event',
 			xmlUrl: 'events.xml'
 		});
-		
+
 		$('#mycalendar2').monthly({
 			mode: 'picker',
 			target: '#mytarget',
-			maxWidth: '250px',
+			setWidth: '250px',
 			startHidden: true,
 			showTrigger: '#mytarget',
 			stylePast: true,

@@ -46,6 +46,7 @@
 	height:5px;
 	margin:-3px 0 0 -5px;
 	-webkit-transform:rotate(45deg) ;
+		-ms-transform:rotate(45deg) ;
 	        transform:rotate(45deg) ;
 }
 /* wrapper for right button to make the clickable area bigger */
@@ -72,20 +73,20 @@
 	height:5px;
 	margin:-3px 0 0 -5px;
 	-webkit-transform:rotate(45deg) ;
+		-ms-transform:rotate(45deg) ;
 	        transform:rotate(45deg) ;
 }
 
 /* Day of the week headings */
 .monthly-day-title-wrap {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
+	display:table;
+	width:100%;
 	background: #fff;
 	border-bottom: 1px solid #EBEBEB;
 }
 .monthly-day-title-wrap div {
-	width: calc(100% / 7);
+	width: 14.28%!important;
+	display:table-cell;
 	box-sizing:border-box;
 	position: relative;
 	font-weight: bold;
@@ -96,23 +97,19 @@
 
 /* Calendar days wrapper */
 .monthly-day-wrap {
-	display:-webkit-box;
-	display:-webkit-flex;
-	display:-ms-flexbox;
-	display:flex;
-	-webkit-flex-wrap:wrap;
-	    -ms-flex-wrap:wrap;
-	        flex-wrap:wrap;
-	-webkit-align-content:stretch;
-	    -ms-flex-line-pack:stretch;
-	        align-content:stretch;
+	display:table;
 	width:100%;
 	overflow: hidden;
 }
-
+.monthly-week {
+	display:table-row;
+	width:100%;
+}
 /* Calendar Days */
 .monthly-day, .monthly-day-blank {
-	width: calc(100% / 7);
+	width: 14.28%!important;
+	display:table-cell;
+	vertical-align: top;
 	box-sizing:border-box;
 	position: relative;
 	font-weight: bold;
@@ -126,7 +123,7 @@
 }
 
 /* Trick to make the days' width equal their height */
-.monthly-day:before, .monthly-day-blank:before {
+.monthly-day:before {
 	content: "";
 	display: block;
 	padding-top: 100%;
@@ -171,8 +168,10 @@
 	width: 150%;
 	height: 2px;
 	-webkit-transform-origin: left top;
+		-ms-transform-origin: left top;
 	        transform-origin: left top;
 	-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
 	        transform: rotate(45deg);
 	background: rgba(0, 0, 0, 0.1);
 	position: absolute;
@@ -197,7 +196,7 @@
 }
 .monthly-day-pick.monthly-today .monthly-day-number {
 	padding:0;
-	margin:22%;
+	margin:22% 22% 0 22%;
 }
 
 /* Button to reset to current month */
@@ -279,7 +278,7 @@
 }
 
 
-/* Class for days with events */
+/* Wrapper around events */
 .monthly-indicator-wrap {
 	position: relative;
 	text-align: center;
@@ -318,6 +317,7 @@
 	-webkit-transition: .25s;
 	transition:.25s;
 	-webkit-transform:scale(0);
+		-ms-transform:scale(0);
 	        transform:scale(0);
 }
 
@@ -415,7 +415,7 @@
 		padding-top: 77%;
 	}
 	.monthly-day-event > .monthly-indicator-wrap {
-		width:100%;
+		width:auto;
 		max-width: none;
 	}
 	.monthly-indicator-wrap {
@@ -424,7 +424,7 @@
 	.monthly-day .monthly-event-indicator {
 		display: block;
 		margin: 0 0 1px 0;
-		width: 100%;
+		width: auto;
 		height:20px;
 		font-size: 10px;
 		padding: 4px;
