@@ -3,8 +3,6 @@ A jQuery based responsive calendar plugin by <a href="https://twitter.com/kthorn
 
 <a href="http://kthornbloom.com/monthly" target="_blank">Live Demo</a>
 
-<img src="http://kthornbloom.com/monthly/cal-lg.gif"/>
-
 ##Features
 
 - Use as a date picker, or a full fledged calendar
