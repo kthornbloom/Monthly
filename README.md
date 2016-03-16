@@ -23,6 +23,8 @@ Did this plugin help you out? Support open source development! <a href="https://
 
 ##Changelog
 
+v 2.0.6 - Fixed a bug where AM and PM would show up even if there's no time specified. Also fixed a bug where long event titles weren't being truncated.
+
 v 2.0.5 - Dropped flexbox 😞 in favor of display:table-cell to support 💩💩IE9💩💩
 
 v 2.0.4 - Added more vendor prefixes to support older versions of iOS

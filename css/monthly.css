@@ -80,6 +80,7 @@
 /* Day of the week headings */
 .monthly-day-title-wrap {
 	display:table;
+	table-layout:fixed;
 	width:100%;
 	background: #fff;
 	border-bottom: 1px solid #EBEBEB;
@@ -98,6 +99,7 @@
 /* Calendar days wrapper */
 .monthly-day-wrap {
 	display:table;
+	table-layout:fixed;
 	width:100%;
 	overflow: hidden;
 }
@@ -378,9 +380,9 @@
 	font-size:.8em;
 	display: inline-block;
 }
-.monthly-list-time-start:not(:empty):after {
-	content:' -';
-	padding-right:5px;
+.monthly-list-time-end:not(:empty):before {
+	content:'-';
+	padding:0 2px;
 }
 
 /* Events List custom webkit scrollbar */
