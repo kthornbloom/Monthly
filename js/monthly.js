@@ -88,12 +88,15 @@ Monthly 2.0.6 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// Print out the days
 			if (options.mode == 'event') {
 				for(var i = 0; i < dayQty; i++) {
-
 					var day = i + 1; // Fix 0 indexed days
 					var dayNamenum = new Date(y, mZeroed, day, 0, 0, 0, 0).getDay()
 
-					$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="m-d monthly-day monthly-day-event" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
-					$('#' + uniqueId + ' .monthly-event-list').append('<div class="monthly-list-item" id="'+uniqueId+'day'+day+'" data-number="'+day+'"><div class="monthly-event-list-date">'+dayNames[dayNamenum]+'<br>'+day+'</div></div>');
+					if(((day < currentDay && m === currentMonth) || y < currentYear || (m < currentMonth && y == currentYear)) && options.stylePast == true) {
+        					$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="m-d monthly-day monthly-day-event monthly-past-day" data-number="'+day+'"><div class="monthly-day-number">'+day+'</div><div class="monthly-indicator-wrap"></div></a>');
+          				} else {
+            					$('#' + uniqueId + ' .monthly-day-wrap').append('<a href="#" class="m-d monthly-day monthly-day-event" data-number="' + day + '"><div class="monthly-day-number">' + day + '</div><div class="monthly-indicator-wrap"></div></a>');
+          				}
+        				$('#' + uniqueId + ' .monthly-event-list').append('<div class="monthly-list-item" id="'+uniqueId+'day'+day+'" data-number="'+day+'"><div class="monthly-event-list-date">'+dayNames[dayNamenum]+'<br>'+day+'</div></div>');
 				}
 			} else {
 				for(var i = 0; i < dayQty; i++) {
