@@ -1,5 +1,5 @@
 /*
-Monthly 2.0.6 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function($) {
@@ -85,6 +85,7 @@ Monthly 2.0.6 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// Remove old days
 			$('#' + uniqueId + ' .monthly-day, #' + uniqueId + ' .monthly-day-blank').remove();
 			$('#'+uniqueId+' .monthly-event-list').empty();
+			$('#'+uniqueId+' .monthly-day-wrap').empty();
 			// Print out the days
 			if (options.mode == 'event') {
 				for(var i = 0; i < dayQty; i++) {
