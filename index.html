@@ -136,7 +136,9 @@
 
 		$('#mycalendar').monthly({
 			mode: 'event',
-			xmlUrl: 'events.xml'
+			jsonUrl: 'events.json',
+			dataType: 'json'
+			// xmlUrl: 'events.xml'
 		});
 
 		$('#mycalendar2').monthly({
