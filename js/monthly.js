@@ -1,13 +1,9 @@
-/*
-Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
-*/
-
 (function($) {
 	$.fn.extend({
 		monthly: function(options) {
 			// These are overridden by options declared in footer
 			var defaults = {
-				weekStart: 'Sun',
+				weekStart: 'Mon',
 				mode: '',
 				xmlUrl: '',
 				target: '',
@@ -18,7 +14,7 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				showTrigger: '',
 				stylePast: false,
 				disablePast: false
-			}
+			};
 
 			var options = $.extend(defaults, options),
 				that = this,
@@ -27,8 +23,9 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				currentMonth = d.getMonth() + 1,
 				currentYear = d.getFullYear(),
 				currentDay = d.getDate(),
-				monthNames = options.monthNames || ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-				dayNames = options.dayNames || ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+				monthNames = options.monthNames || ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
+						"Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+				dayNames = options.dayNames || ['Pazar','P.ertesi','Salı','Çarşamba','Perşembe','Cuma','C.ertesi'];
 
 		if (options.maxWidth != false){
 			$('#'+uniqueId).css('maxWidth',options.maxWidth);
@@ -88,6 +85,7 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			$('#'+uniqueId+' .monthly-day-wrap').empty();
 			// Print out the days
 			if (options.mode == 'event') {
+				$('#' + uniqueId + ' .monthly-event-list').append('<div class="monthly-event-list-close"><i class="fa fa-times"></i></div>');
 				for(var i = 0; i < dayQty; i++) {
 
 					var day = i + 1; // Fix 0 indexed days
@@ -178,26 +176,26 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							endTime = $(this).find('endtime').text(),
 							endSplit = endTime.split(":");
 							eventLink = '',
-							startPeriod = 'AM',
-							endPeriod = 'PM';
+							startPeriod = '',
+							endPeriod = '';
 
 						/* Convert times to 12 hour & determine AM or PM */
-						if(parseInt(startSplit[0]) >= 12) {
-							var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
-							var startPeriod = 'PM'
-						}
-
-						if(parseInt(startTime) == 0) {
-							var startTime = '12:'+startSplit[1]+'';
-						}
-
-						if(parseInt(endSplit[0]) >= 12) {
-							var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
-							var endPeriod = 'PM'
-						}
-						if(parseInt(endTime) == 0) {
-							var endTime = '12:'+endSplit[1]+'';
-						}
+						//if(parseInt(startSplit[0]) >= 12) {
+						//	var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
+						//	var startPeriod = 'PM'
+						//}
+                        //
+						//if(parseInt(startTime) == 0) {
+						//	var startTime = '12:'+startSplit[1]+'';
+						//}
+                        //
+						//if(parseInt(endSplit[0]) >= 12) {
+						//	var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
+						//	var endPeriod = 'PM'
+						//}
+						//if(parseInt(endTime) == 0) {
+						//	var endTime = '12:'+endSplit[1]+'';
+						//}
 						if (eventURL){
 							var eventLink = 'href="'+eventURL+'"';
 						}
@@ -322,7 +320,14 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			viewToggleButton();
 			e.preventDefault();
 		});
-
+		$(document.body).on('click', '.monthly-event-list-close', function (e) {
+			var setMonth = $('#' + uniqueId).data('setMonth'),
+				setYear = $('#' + uniqueId).data('setYear');
+				setMonthly(setMonth, setYear);
+			$('.monthly-event-list').hide();
+			viewToggleButton();
+			e.preventDefault();
+		});
 		// Go back in months
 		$(document.body).on('click', '#'+uniqueId+' .monthly-prev', function (e) {
 			var setMonth = $('#' + uniqueId).data('setMonth'),
