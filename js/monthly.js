@@ -85,6 +85,7 @@
 			$('#'+uniqueId+' .monthly-day-wrap').empty();
 			// Print out the days
 			if (options.mode == 'event') {
+				$('#' + uniqueId + ' .monthly-event-list').append('<div class="monthly-event-list-close"><i class="fa fa-times"></i></div>');
 				for(var i = 0; i < dayQty; i++) {
 
 					var day = i + 1; // Fix 0 indexed days
@@ -319,7 +320,7 @@
 			viewToggleButton();
 			e.preventDefault();
 		});
-		$(document.body).on('click', '.monthly-event-list', function (e) {
+		$(document.body).on('click', '.monthly-event-list-close', function (e) {
 			var setMonth = $('#' + uniqueId).data('setMonth'),
 				setYear = $('#' + uniqueId).data('setYear');
 				setMonthly(setMonth, setYear);
@@ -327,7 +328,6 @@
 			viewToggleButton();
 			e.preventDefault();
 		});
-
 		// Go back in months
 		$(document.body).on('click', '#'+uniqueId+' .monthly-prev', function (e) {
 			var setMonth = $('#' + uniqueId).data('setMonth'),
