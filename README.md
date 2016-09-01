@@ -23,6 +23,8 @@ Did this plugin help you out? Support open source development! <a href="https://
 
 ##Changelog
 
+🆕 v 2.1.0 - Fixed a bug where the event list would animate <i>in</i> but not <i>out</i>. Merged a pull request to include json support. (Thanks marekstodolny!) Made buttons more visible in header for closing event list & reverting to the current month.
+
 v 2.0.7 - Fixed a bug where divs were left behind when advancing through months. Merged a pull request fixing day name options.
 
 v 2.0.6 - Fixed a bug where AM and PM would show up even if there's no time specified. Also fixed a bug where long event titles weren't being truncated. Added xml error handling.

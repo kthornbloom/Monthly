@@ -1,5 +1,5 @@
 /*
-Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function($) {
@@ -67,7 +67,7 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		}
 
 		// Add Header & event list markup
-		$('#' + uniqueId).prepend('<div class="monthly-header"><div class="monthly-header-title"></div><a href="#" class="monthly-prev"></a><a href="#" class="monthly-next"></a></div>').append('<div class="monthly-event-list"></div>');
+		$('#' + uniqueId).prepend('<div class="monthly-header"><div class="monthly-header-title"><a href="#" class="monthly-header-title-date" onclick="return false"></a></div><a href="#" class="monthly-prev"></a><a href="#" class="monthly-next"></a></div>').append('<div class="monthly-event-list"></div>');
 
 		// How many days are in this month?
 		function daysInMonth(m, y){
@@ -122,9 +122,9 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 			// Reset button
 			if (setMonth == currentMonth && setYear == currentYear) {
-				$('#' + uniqueId + ' .monthly-header-title').html(monthNames[m - 1] +' '+ y);
+				$('#' + uniqueId + ' .monthly-header-title-date').html(monthNames[m - 1] +' '+ y);
 			} else {
-				$('#' + uniqueId + ' .monthly-header-title').html(monthNames[m - 1] +' '+ y +'<a href="#" class="monthly-reset" title="Back To This Month"></a> ');
+				$('#' + uniqueId + ' .monthly-header-title').html('<a href="#" class="monthly-header-title-date"  onclick="return false">'+monthNames[m - 1] +' '+ y +'</a><a href="#" class="monthly-reset" title="Set to today">↻ TODAY</a> ');
 			}
 
 			// Account for empty days at start
@@ -290,7 +290,7 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 				var eventsResource = (options.dataType == 'xml' ? options.xmlUrl : options.jsonUrl);
 
-				$.get(''+eventsResource+'', function(d){
+				$.get(''+eventsResource+'', {now: jQuery.now()}, function(d){
 					if (options.dataType == 'xml') {
 						$(d).find('event').each(function(index, event) {
 							addEvents(event);
@@ -318,7 +318,7 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		function viewToggleButton(){
 			if($('#'+uniqueId+' .monthly-event-list').is(":visible")) {
 				$('#'+uniqueId+' .monthly-cal').remove();
-				$('#'+uniqueId+' .monthly-header-title').prepend('<a href="#" class="monthly-cal" title="Back To Month View"><div></div></a>');
+				$('#'+uniqueId+' .monthly-header-title').prepend('<a href="#" class="monthly-cal" title="Back To Month View">☷ MONTH</a>');
 			}
 		}
 
@@ -358,6 +358,7 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		// Reset Month
 		$(document.body).on('click', '#'+uniqueId+' .monthly-reset', function (e) {
+			$(this).remove();
 			setMonthly(currentMonth, currentYear);
 			viewToggleButton();
 			e.preventDefault();
@@ -367,7 +368,10 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		// Back to month view
 		$(document.body).on('click', '#'+uniqueId+' .monthly-cal', function (e) {
 			$(this).remove();
-				$('#' + uniqueId+' .monthly-event-list').css('transform','scale(0)').delay('800').hide();
+				$('#' + uniqueId+' .monthly-event-list').css('transform','scale(0)');
+				setTimeout(function(){
+					$('#' + uniqueId+' .monthly-event-list').hide();
+				}, 250);
 			e.preventDefault();
 		});
 
@@ -379,12 +383,11 @@ Monthly 2.0.7 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				$('#' + uniqueId+' .monthly-event-list').show();
 				$('#' + uniqueId+' .monthly-event-list').css('transform');
 				$('#' + uniqueId+' .monthly-event-list').css('transform','scale(1)');
-				$('#'+uniqueId+' .monthly-list-item[data-number="'+whichDay+'"]').show();
+				$('#' + uniqueId+' .monthly-list-item[data-number="'+whichDay+'"]').show();
 
 				var myElement = document.getElementById(uniqueId+'day'+whichDay);
 				var topPos = myElement.offsetTop;
-				//document.getElementByClassname('scrolling_div').scrollTop = topPos;
-				$('#'+uniqueId+' .monthly-event-list').scrollTop(topPos);
+				$('#' + uniqueId+' .monthly-event-list').scrollTop(topPos);
 				viewToggleButton();
 			// If picker, pick date
 			} else if (options.mode == 'picker') {
