@@ -182,7 +182,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						endSplit = endTime.split(":"),
 						eventLink = '',
 						startPeriod = 'AM',
-						endPeriod = 'PM';
+						endPeriod = 'AM';
 
 					/* Convert times to 12 hour & determine AM or PM */
 					if(parseInt(startSplit[0]) >= 12) {
