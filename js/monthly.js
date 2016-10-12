@@ -22,6 +22,19 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				disablePast: false
 			}
 
+			const _CONST_LOCALES = {
+                          'en':{
+			      monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+			      dayNames:  ['SUN','MON','TUE','WED','THU','FRI','SAT']
+			  },
+			  'pt-br': {
+			      monthNames : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
+			      dayNames: 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
+			   }
+			};
+			
+			const _CONST_LOCALE_KEY = options.monthNames || 'en';
+			
 			var options = $.extend(defaults, options),
 				that = this,
 				uniqueId = $(this).attr('id'),
@@ -29,8 +42,8 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				currentMonth = d.getMonth() + 1,
 				currentYear = d.getFullYear(),
 				currentDay = d.getDate(),
-				monthNames = options.monthNames || ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-				dayNames = options.dayNames || ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+				monthNames = _CONST_LOCALES[_CONST_LOCALE_KEY].monthNames,
+				dayNames =  _CONST_LOCALES[_CONST_LOCALE_KEY].dayNames;
 
 		if (options.maxWidth != false){
 			$('#'+uniqueId).css('maxWidth',options.maxWidth);
