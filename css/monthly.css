@@ -289,9 +289,6 @@
 	display: none;
 	-webkit-transition: .25s;
 	transition:.25s;
-	-webkit-transform:scale(0);
-		-ms-transform:scale(0);
-	        transform:scale(0);
 }
 
 /* Days in Events List */
