@@ -29,8 +29,8 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				currentMonth = d.getMonth() + 1,
 				currentYear = d.getFullYear(),
 				currentDay = d.getDate(),
-				monthNames = options.monthNames || ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-				dayNames = options.dayNames || ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+				monthNames = options.monthNames || ["Yan", "Fev", "Mart", "Apr", "May", "İyun", "İyul", "Avq", "Sent", "Okt", "Noy", "Dek"],
+				dayNames = options.dayNames || ['Bazar','B. ERTƏSİ','Ç. Axşamı','Çərşənbə','C. Axşamı','Cümə','Şənbə'];
 
 		if (options.maxWidth != false){
 			$('#'+uniqueId).css('maxWidth',options.maxWidth);
@@ -68,6 +68,10 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		// Add Header & event list markup
 		$('#' + uniqueId).prepend('<div class="monthly-header"><div class="monthly-header-title"><a href="#" class="monthly-header-title-date" onclick="return false"></a></div><a href="#" class="monthly-prev"></a><a href="#" class="monthly-next"></a></div>').append('<div class="monthly-event-list"></div>');
+
+		// removing next month and shite
+
+		// $('#' + uniqueId).prepend('<div class="monthly-header"><div class="monthly-header-title"><a href="#" class="monthly-header-title-date" onclick="return false"></a></div><a href="#" class="monthly-prev"></a><a href="#" class="monthly-next"></a></div>').append('<div class="monthly-event-list"></div>');
 
 		// How many days are in this month?
 		function daysInMonth(m, y){
@@ -124,7 +128,8 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			if (setMonth == currentMonth && setYear == currentYear) {
 				$('#' + uniqueId + ' .monthly-header-title-date').html(monthNames[m - 1] +' '+ y);
 			} else {
-				$('#' + uniqueId + ' .monthly-header-title').html('<a href="#" class="monthly-header-title-date"  onclick="return false">'+monthNames[m - 1] +' '+ y +'</a><a href="#" class="monthly-reset" title="Set to today">↻ TODAY</a> ');
+				$('#' + uniqueId + ' .monthly-header-title').html('<a href="#" class="monthly-header-title-date"  onclick="return false">'+monthNames[m - 1] +' '+ y +'</a>');
+				// <a href="#" class="monthly-reset" title="Set to today">↻ TODAY</a> ------------->appended to last of top appended shite
 			}
 
 			// Account for empty days at start
@@ -174,6 +179,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						endDay = parseInt(endArr[2], 10),
 						eventURL = options.dataType == 'xml' ? $(event).find('url').text() : event.url,
 						eventTitle = options.dataType == 'xml' ? $(event).find('name').text() : event.name,
+						eventDesc = options.dataType == 'xml' ? $(event).find('desc').text() : event.desc,
 						eventColor = options.dataType == 'xml' ? $(event).find('color').text() : event.color,
 						eventId = options.dataType == 'xml' ? $(event).find('id').text() : event.id,
 						startTime = options.dataType == 'xml' ? $(event).find('starttime').text() : event.starttime,
@@ -181,25 +187,25 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						endTime = options.dataType == 'xml' ? $(event).find('endtime').text() : event.endtime,
 						endSplit = endTime.split(":"),
 						eventLink = '',
-						startPeriod = 'AM',
-						endPeriod = 'PM';
+						startPeriod = '',
+						endPeriod = '';
 
 					/* Convert times to 12 hour & determine AM or PM */
 					if(parseInt(startSplit[0]) >= 12) {
-						var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
-						var startPeriod = 'PM'
+						// var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
+						// var startPeriod = 'PM'
 					}
 
 					if(parseInt(startTime) == 0) {
-						var startTime = '12:'+startSplit[1]+'';
+						// var startTime = '12:'+startSplit[1]+'';
 					}
 
 					if(parseInt(endSplit[0]) >= 12) {
-						var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
-						var endPeriod = 'PM'
+						// var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
+						// var endPeriod = 'PM'
 					}
 					if(parseInt(endTime) == 0) {
-						var endTime = '12:'+endSplit[1]+'';
+						// var endTime = '12:'+endSplit[1]+'';
 					}
 					if (eventURL){
 						var eventLink = 'href="'+eventURL+'"';
@@ -216,7 +222,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							}
 							var timeHtml = startTimehtml + endTimehtml + '</div>';
 						}
-						$('#'+uniqueId+' .monthly-list-item[data-number="'+i+'"]').addClass('item-has-event').append('<a href="'+eventURL+'" class="listed-event"  data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+' '+timeHtml+'</a>');
+						$('#'+uniqueId+' .monthly-list-item[data-number="'+i+'"]').addClass('item-has-event').append('<a href="'+eventURL+'" class="listed-event" data-eventdesc="'+eventDesc+'" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+' '+timeHtml+'</a>');
 					}
 
 
@@ -234,7 +240,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							}
 							var timeHtml = startTimehtml + endTimehtml + '</div>';
 						}
-						$('#'+uniqueId+' .monthly-list-item[data-number="'+startDay+'"]').addClass('item-has-event').append('<a href="'+eventURL+'" class="listed-event"  data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+' '+timeHtml+'</a>');
+						$('#'+uniqueId+' .monthly-list-item[data-number="'+startDay+'"]').addClass('item-has-event').append('<a href="'+eventURL+'" class="listed-event" data-eventid="'+ eventId +'" style="background:'+eventColor+'" title="'+eventTitle+'">'+eventTitle+' '+timeHtml+'</a>');
 
 
 						// If event is multi day & within month
@@ -318,7 +324,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		function viewToggleButton(){
 			if($('#'+uniqueId+' .monthly-event-list').is(":visible")) {
 				$('#'+uniqueId+' .monthly-cal').remove();
-				$('#'+uniqueId+' .monthly-header-title').prepend('<a href="#" class="monthly-cal" title="Back To Month View">☷ MONTH</a>');
+				// $('#'+uniqueId+' .monthly-header-title').prepend('<a href="#" class="monthly-cal" title="Back To Month View">☷ Ay</a>');
 			}
 		}
 
@@ -362,7 +368,6 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			setMonthly(currentMonth, currentYear);
 			viewToggleButton();
 			e.preventDefault();
-			e.stopPropagation();
 		});
 
 		// Back to month view
@@ -375,14 +380,20 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			e.preventDefault();
 		});
 
+		$('#' + uniqueId+' .monthly-event-list').show();
+		$('#' + uniqueId+' .monthly-event-list').css('transform');
+		$('#' + uniqueId+' .monthly-event-list').css('transform','scale(1)');
+		$('#' + uniqueId+' .monthly-list-item').not('[data-number="'+currentDay+'"]').hide();
+		$('#' + uniqueId+' .monthly-list-item[data-number="'+currentDay+'"]').show();
+		
+		
 		// Click A Day
 		$(document.body).on('click', '#'+uniqueId+' a.monthly-day', function (e) {
 			// If events, show events list
 			if(options.mode == 'event' && options.eventList == true) {
 				var whichDay = $(this).data('number');
-				$('#' + uniqueId+' .monthly-event-list').show();
-				$('#' + uniqueId+' .monthly-event-list').css('transform');
-				$('#' + uniqueId+' .monthly-event-list').css('transform','scale(1)');
+				$('#' + uniqueId+' .monthly-list-item').not('[data-number="'+whichDay+'"]').hide();
+
 				$('#' + uniqueId+' .monthly-list-item[data-number="'+whichDay+'"]').show();
 
 				var myElement = document.getElementById(uniqueId+'day'+whichDay);
@@ -412,13 +423,28 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		});
 
 		// Clicking an event within the list
-		$(document.body).on('click', '#'+uniqueId+' .listed-event', function (e) {
-			var href = $(this).attr('href');
-			// If there isn't a link, don't go anywhere
-			if(!href) {
-				e.preventDefault();
-			}
-		});
+			// var $calTest = true;
+
+			// $('.listed-event').each().prop('data-accordbool', true);
+
+			$(document.body).on('click', '#'+uniqueId+' .listed-event', function (e) {
+				var href = $(this).attr('href');
+
+				if ($(this).prop('data-accordbool')) {
+					
+					$(this).find('#event-desc').remove();
+					if(!href) e.preventDefault();
+
+					$(this).prop('data-accordbool', false);
+				}else{
+					var $descDiv = $('#event-desc').clone().css('display', 'block').html($(this).attr('data-eventdesc'));
+					$(this).append($descDiv);
+					if(!href) e.preventDefault();
+
+					$(this).prop('data-accordbool', true);
+				}
+
+			});
 
 		}
 	});

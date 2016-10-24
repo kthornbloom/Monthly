@@ -14,11 +14,7 @@
 
 <!-- Favicon  ========================================== -->
 
-
-<!-- CSS ======================================================
-	<link rel="stylesheet" href="css/responsivetables.css">-->
-	<!-- Demo CSS (don't use) -->
-	<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/monthly.css">
 	<style type="text/css">
 		body, html {
 			padding:0px;
@@ -27,7 +23,7 @@
 			background-size:cover;
 			background-attachment: fixed;
 			text-align:center;
-			color:#fff;
+			/* color:#fff; */
 			line-height: 1.4em;
 			font-family: "Trebuchet MS", Helvetica, sans-serif;
 		}
@@ -92,6 +88,9 @@
 			padding-top:30px;
 			line-height: 1.4em;
 		}
+		.page h1{
+			color: #fff;
+		}
 		.resize {
 			background: #222;
 			display: inline-block;
@@ -109,47 +108,68 @@
 				display: none;
 			}
 		}
+	.calendar-wrapper{
+		width: 1000px;
+		height: 465px;
+		position: relative;
+		margin: 0 auto;
+	}
+
+	.calendar-box{
+		float: left;
+		width: 40%;
+		overflow: hidden;
+	}
+
+	.monthly-header-title a{
+		line-height: 23px;
+	}
+
+	.listed-event{
+		font-weight: bold;
+	}
+
+	.monthly-event-list{
+		width: 56%;
+	    height: calc(100% - 13px);
+		right: 0;
+		padding: 0 15px;
+		top: 0;
+	}
+
+	.monthly-list-item{
+		padding: 10px 10px 5px 60px;
+	}
 	</style>
-	<link rel="stylesheet" href="css/monthly.css">
+	
 </head>
 <body>
 <div class="page">
-		<h1>monthly.js</h1>
-		<h2>Example One - Event Calendar</h2>
-		<div style="width:100%; max-width:600px; display:inline-block;">
-			<div class="monthly" id="mycalendar"></div>
-		</div>
-		<br><br>
-		<h2>Example Two - Date Picker</h2>
-		<div style="display:inline-block; width:250px;">
-			<input type="text" id="mytarget" value="Select Date">
-			<div class="monthly" id="mycalendar2"></div>
-		</div>
-		<br>
-		<a href="https://github.com/kthornbloom/Monthly" class="button">DOWNLOAD / DOCS</a>
+	<h1>monthly.js</h1>
+	<div style="width:100%; display:inline-block;">
+		<div class="calendar-wrapper">
+            <div class="calendar-box">
+                <div id="mycalendar"></div>
+            </div>
+            <div style="display: none; color: white; padding: 10px 0" id="event-desc">test</div>
+        </div>
+	</div>
 </div>
 <!-- JS ======================================================= -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/monthly.js"></script>
 <script type="text/javascript">
+
 	$(window).load( function() {
 
 		$('#mycalendar').monthly({
 			mode: 'event',
-			//jsonUrl: 'events.json',
-			//dataType: 'json'
-			xmlUrl: 'events.xml'
+			jsonUrl: 'events.json',
+			dataType: 'json',
+			stylePast: false,
+			// xmlUrl: 'events.xml'
 		});
 
-		$('#mycalendar2').monthly({
-			mode: 'picker',
-			target: '#mytarget',
-			setWidth: '250px',
-			startHidden: true,
-			showTrigger: '#mytarget',
-			stylePast: true,
-			disablePast: true
-		});
 
 	switch(window.location.protocol) {
 	case 'http:':
