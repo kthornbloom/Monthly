@@ -423,16 +423,28 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		});
 
 		// Clicking an event within the list
-		$(document.body).on('click', '#'+uniqueId+' .listed-event', function (e) {
-			var href = $(this).attr('href');
-			var $descDiv = $('#event-desc').css('display', 'block').html($(this).attr('data-eventdesc'))
-			$(this).append($descDiv);
+			// var $calTest = true;
 
-			// If there isn't a link, don't go anywhere
-			if(!href) {
-				e.preventDefault();
-			}
-		});
+			// $('.listed-event').each().prop('data-accordbool', true);
+
+			$(document.body).on('click', '#'+uniqueId+' .listed-event', function (e) {
+				var href = $(this).attr('href');
+
+				if ($(this).prop('data-accordbool')) {
+					
+					$(this).find('#event-desc').remove();
+					if(!href) e.preventDefault();
+
+					$(this).prop('data-accordbool', false);
+				}else{
+					var $descDiv = $('#event-desc').clone().css('display', 'block').html($(this).attr('data-eventdesc'));
+					$(this).append($descDiv);
+					if(!href) e.preventDefault();
+
+					$(this).prop('data-accordbool', true);
+				}
+
+			});
 
 		}
 	});
