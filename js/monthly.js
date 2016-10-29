@@ -177,30 +177,37 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						eventColor = options.dataType == 'xml' ? $(event).find('color').text() : event.color,
 						eventId = options.dataType == 'xml' ? $(event).find('id').text() : event.id,
 						startTime = options.dataType == 'xml' ? $(event).find('starttime').text() : event.starttime,
-						startSplit = startTime.split(":"),
+						startSplit = startTime ? startTime.split(":") : undefined,
 						endTime = options.dataType == 'xml' ? $(event).find('endtime').text() : event.endtime,
-						endSplit = endTime.split(":"),
+						endSplit = endTime ? endTime.split(":") : undefined,
 						eventLink = '',
 						startPeriod = 'AM',
 						endPeriod = 'AM';
 
 					/* Convert times to 12 hour & determine AM or PM */
-					if(parseInt(startSplit[0]) >= 12) {
-						var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
-						var startPeriod = 'PM'
+					if(startTime) {
+						if(parseInt(startSplit[0]) >= 12) {
+							var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
+							var startPeriod = 'PM'
+						}
+					
+
+						if(parseInt(startTime) == 0) {
+							var startTime = '12:'+startSplit[1]+'';
+						}
 					}
 
-					if(parseInt(startTime) == 0) {
-						var startTime = '12:'+startSplit[1]+'';
+					if(endTime) {
+						if(parseInt(endSplit[0]) >= 12) {
+							var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
+							var endPeriod = 'PM'
+						}
+						
+						if(parseInt(endTime) == 0) {
+							var endTime = '12:'+endSplit[1]+'';
+						}
 					}
-
-					if(parseInt(endSplit[0]) >= 12) {
-						var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
-						var endPeriod = 'PM'
-					}
-					if(parseInt(endTime) == 0) {
-						var endTime = '12:'+endSplit[1]+'';
-					}
+					
 					if (eventURL){
 						var eventLink = 'href="'+eventURL+'"';
 					}
