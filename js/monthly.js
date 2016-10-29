@@ -190,7 +190,6 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
 							var startPeriod = 'PM'
 						}
-					
 
 						if(parseInt(startTime) == 0) {
 							var startTime = '12:'+startSplit[1]+'';
@@ -202,12 +201,11 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
 							var endPeriod = 'PM'
 						}
-						
 						if(parseInt(endTime) == 0) {
 							var endTime = '12:'+endSplit[1]+'';
 						}
 					}
-					
+
 					if (eventURL){
 						var eventLink = 'href="'+eventURL+'"';
 					}
@@ -314,7 +312,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			}
 			var divs = $("#"+uniqueId+" .m-d");
 			for(var i = 0; i < divs.length; i+=7) {
-			  divs.slice(i, i+7).wrapAll("<div class='monthly-week'></div>");
+				divs.slice(i, i+7).wrapAll("<div class='monthly-week'></div>");
 			}
 		}
 
