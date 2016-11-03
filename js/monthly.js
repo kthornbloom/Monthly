@@ -19,7 +19,8 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				startHidden: false,
 				showTrigger: '',
 				stylePast: false,
-				disablePast: false
+				disablePast: false,
+				loadOnce: false,
 			}
 
 			var options = $.extend(defaults, options),
@@ -31,6 +32,8 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				currentDay = d.getDate(),
 				monthNames = options.monthNames || ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 				dayNames = options.dayNames || ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+				hasLoaded = false;
+				loadedData = undefined;
 
 		if (options.maxWidth != false){
 			$('#'+uniqueId).css('maxWidth',options.maxWidth);
@@ -295,19 +298,33 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 				var eventsResource = (options.dataType == 'xml' ? options.xmlUrl : options.jsonUrl);
 
-				$.get(''+eventsResource+'', {now: jQuery.now()}, function(d){
+				if (!options.loadOnce || (options.loadOnce && !hasLoaded)) {
+					$.get(''+eventsResource+'', {now: jQuery.now()}, function(d){
+						loadedData = d;
+						if (options.dataType == 'xml') {
+							$(d).find('event').each(function(index, event) {
+								addEvents(event);
+							});
+						} else if (options.dataType == 'json') {
+							$.each(d.monthly, function(index, event) {
+								addEvents(event);
+							});
+						}
+						hasLoaded = true;
+					}, options.dataType).fail(function() {
+						console.error('Monthly.js failed to import '+eventsResource+'. Please check for the correct path & '+options.dataType+' syntax.');
+					});
+				} else {
 					if (options.dataType == 'xml') {
-						$(d).find('event').each(function(index, event) {
+						$(loadedData).find('event').each(function(index, event) {
 							addEvents(event);
 						});
 					} else if (options.dataType == 'json') {
-						$.each(d.monthly, function(index, event) {
+						$.each(loadedData.monthly, function(index, event) {
 							addEvents(event);
 						});
 					}
-				}, options.dataType).fail(function() {
-					console.error('Monthly.js failed to import '+eventsResource+'. Please check for the correct path & '+options.dataType+' syntax.');
-				});
+				}
 
 			}
 			var divs = $("#"+uniqueId+" .m-d");
