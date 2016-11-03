@@ -19,7 +19,8 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				startHidden: false,
 				showTrigger: '',
 				stylePast: false,
-				disablePast: false
+				disablePast: false,
+				loadOnce: false,
 			}
 
 			var options = $.extend(defaults, options),
@@ -31,6 +32,8 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				currentDay = d.getDate(),
 				monthNames = options.monthNames || ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 				dayNames = options.dayNames || ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+				hasLoaded = false;
+				loadedData = undefined;
 
 		if (options.maxWidth != false){
 			$('#'+uniqueId).css('maxWidth',options.maxWidth);
@@ -177,30 +180,35 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						eventColor = options.dataType == 'xml' ? $(event).find('color').text() : event.color,
 						eventId = options.dataType == 'xml' ? $(event).find('id').text() : event.id,
 						startTime = options.dataType == 'xml' ? $(event).find('starttime').text() : event.starttime,
-						startSplit = startTime.split(":"),
+						startSplit = startTime ? startTime.split(":") : undefined,
 						endTime = options.dataType == 'xml' ? $(event).find('endtime').text() : event.endtime,
-						endSplit = endTime.split(":"),
+						endSplit = endTime ? endTime.split(":") : undefined,
 						eventLink = '',
 						startPeriod = 'AM',
-						endPeriod = 'PM';
+						endPeriod = 'AM';
 
 					/* Convert times to 12 hour & determine AM or PM */
-					if(parseInt(startSplit[0]) >= 12) {
-						var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
-						var startPeriod = 'PM'
+					if(startTime) {
+						if(parseInt(startSplit[0]) >= 12) {
+							var startTime = (startSplit[0] - 12)+':'+startSplit[1]+'';
+							var startPeriod = 'PM'
+						}
+
+						if(parseInt(startTime) == 0) {
+							var startTime = '12:'+startSplit[1]+'';
+						}
 					}
 
-					if(parseInt(startTime) == 0) {
-						var startTime = '12:'+startSplit[1]+'';
+					if(endTime) {
+						if(parseInt(endSplit[0]) >= 12) {
+							var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
+							var endPeriod = 'PM'
+						}
+						if(parseInt(endTime) == 0) {
+							var endTime = '12:'+endSplit[1]+'';
+						}
 					}
 
-					if(parseInt(endSplit[0]) >= 12) {
-						var endTime = (endSplit[0] - 12)+':'+endSplit[1]+'';
-						var endPeriod = 'PM'
-					}
-					if(parseInt(endTime) == 0) {
-						var endTime = '12:'+endSplit[1]+'';
-					}
 					if (eventURL){
 						var eventLink = 'href="'+eventURL+'"';
 					}
@@ -290,24 +298,38 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 				var eventsResource = (options.dataType == 'xml' ? options.xmlUrl : options.jsonUrl);
 
-				$.get(''+eventsResource+'', {now: jQuery.now()}, function(d){
+				if (!options.loadOnce || (options.loadOnce && !hasLoaded)) {
+					$.get(''+eventsResource+'', {now: jQuery.now()}, function(d){
+						loadedData = d;
+						if (options.dataType == 'xml') {
+							$(d).find('event').each(function(index, event) {
+								addEvents(event);
+							});
+						} else if (options.dataType == 'json') {
+							$.each(d.monthly, function(index, event) {
+								addEvents(event);
+							});
+						}
+						hasLoaded = true;
+					}, options.dataType).fail(function() {
+						console.error('Monthly.js failed to import '+eventsResource+'. Please check for the correct path & '+options.dataType+' syntax.');
+					});
+				} else {
 					if (options.dataType == 'xml') {
-						$(d).find('event').each(function(index, event) {
+						$(loadedData).find('event').each(function(index, event) {
 							addEvents(event);
 						});
 					} else if (options.dataType == 'json') {
-						$.each(d.monthly, function(index, event) {
+						$.each(loadedData.monthly, function(index, event) {
 							addEvents(event);
 						});
 					}
-				}, options.dataType).fail(function() {
-					console.error('Monthly.js failed to import '+eventsResource+'. Please check for the correct path & '+options.dataType+' syntax.');
-				});
+				}
 
 			}
 			var divs = $("#"+uniqueId+" .m-d");
 			for(var i = 0; i < divs.length; i+=7) {
-			  divs.slice(i, i+7).wrapAll("<div class='monthly-week'></div>");
+				divs.slice(i, i+7).wrapAll("<div class='monthly-week'></div>");
 			}
 		}
 
