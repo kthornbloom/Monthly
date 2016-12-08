@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true,
+        "jquery": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "script"
+    },
+    "extends": "eslint:all",
+    "rules": {
+        "dot-location": "off",
+        "func-names": "off",
+        "func-style": "off",
+        "id-length": "off",
+        "indent": "off",
+        "keyword-spacing": "off",
+        "max-len": "off",
+        "max-lines": "off",
+        "max-statements": "off",
+        "multiline-ternary": "off",
+        "newline-after-var": "off",
+        "newline-before-return": "off",
+        "newline-per-chained-call": "off",
+        "no-bitwise": "off",
+        "no-extra-parens": "off",
+        "no-inline-comments": "off",
+        "no-invalid-this": "off",
+        "no-magic-numbers": "off",
+        "no-nested-ternary": "off",
+        "max-statements-per-line": "off",
+        "no-plusplus": "off",
+        "no-tabs": "off",
+        "no-ternary": "off",
+        "no-underscore-dangle": "off",
+        "no-use-before-define": "off",
+        "no-var": "off",
+        "one-var": "off",
+        "no-console": ["error", { "allow": ["warn", "error"] }],
+        "object-shorthand": "off", 
+        "operator-linebreak": "off",
+        "padded-blocks": "off",
+        "prefer-arrow-callback": "off",
+        "prefer-template": "off",
+        "quote-props": ["error", "as-needed"] ,
+        "quotes": ["error", "double", { "avoidEscape": true }],
+        "require-jsdoc": "off",
+        "sort-vars": "off",
+        "space-before-function-paren": "off",
+        "vars-on-top": "off"
+    }
+}
