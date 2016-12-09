@@ -379,8 +379,8 @@
 
 
 /*
-Calendar shows event titles if the device width allows for at least 4em per day (rounded
-up to 30em total). This assumes the calendar font is close to the baseline font size and
+Calendar shows event titles if the device width allows for at least 3em per day (rounded
+up to 25em total). This assumes the calendar font is close to the baseline font size and
 the calendar takes up close to the full media width as the window is made smaller or the
 font is zoomed. If one or both of these is not true, this will need to be overridden by
 a layout-specific width, or you will need to use a library like css-element-queries to 
