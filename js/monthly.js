@@ -16,7 +16,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				jsonUrl: "",
 				linkCalendarToEventUrl: false,
 				maxWidth: false,
-				mode: "",
+				mode: "event",
 				setWidth: false,
 				showTrigger: "",
 				startHidden: false,
