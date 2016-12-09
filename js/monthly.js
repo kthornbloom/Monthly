@@ -446,7 +446,7 @@ Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		});
 
 		// Click A Day
-		$(document.body).on("click", parent + " .monthly-day", function (event) {
+		$(document.body).on("click touchstart", parent + " .monthly-day", function (event) {
 			// If events, show events list
 			var whichDay = $(this).data("number");
 			if(options.mode === "event" && options.eventList) {

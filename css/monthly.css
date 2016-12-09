@@ -174,8 +174,7 @@
 .monthly-day:before {
 	content: '';
 	display: block;
-	padding-top: 80%;					/* Fallback  */
-	padding-top: calc(100% - 1.2em);
+	padding-top: 100%;
 	float: left;
 }
 
@@ -270,6 +269,9 @@
 	border-radius: 0.25em;
 	vertical-align: middle;
 	background: #7BA7CE;
+}
+
+.monthly-day .monthly-event-indicator span {
 	color: transparent;
 }
 
@@ -384,7 +386,7 @@ font is zoomed. If one or both of these is not true, this will need to be overri
 a layout-specific width, or you will need to use a library like css-element-queries to 
 establish the rules based on the calendar element width rather than the device width.
 */
-@media (min-width: 30em) {
+@media (min-width: 25em) {
 	.monthly-day-event {
 		padding-top: 1.3em;
 	}
@@ -394,6 +396,9 @@ establish the rules based on the calendar element width rather than the device w
 	}
 	.monthly-indicator-wrap {
 		padding: 0;
+	}
+	.monthly-day:before {
+		padding-top: calc(100% - 1.2em);
 	}
 	.monthly-day .monthly-event-indicator {
 		display: block;
