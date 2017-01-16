@@ -5,8 +5,8 @@
 	<event>
 		<id>1</id>
 		<name>XML Events</name>
-		<startdate>2016-9-15</startdate>
-		<enddate>2016-9-17</enddate>
+		<startdate>2017-1-2</startdate>
+		<enddate>2016-1-3</enddate>
 		<starttime>12:00</starttime>
 		<endtime>2:00</endtime>
 		<color>#ffb128</color>
@@ -16,7 +16,7 @@
 	<event>
 		<id>2</id>
 		<name>Another Event</name>
-		<startdate>2016-10-15</startdate>
+		<startdate>2017-1-10</startdate>
 		<enddate></enddate>
 		<starttime></starttime>
 		<endtime></endtime>
@@ -27,8 +27,8 @@
 	<event>
 		<id>3</id>
 		<name>Another Event</name>
-		<startdate>2016-10-19</startdate>
-		<enddate>2016-10-23</enddate>
+		<startdate>2017-1-20</startdate>
+		<enddate>2017-1-22</enddate>
 		<starttime>9:00</starttime>
 		<endtime>10:00</endtime>
 		<color>#9cc370</color>
@@ -38,7 +38,7 @@
 	<event>
 		<id>4</id>
 		<name>Another Event</name>
-		<startdate>2016-10-2</startdate>
+		<startdate>2017-2-20</startdate>
 		<enddate></enddate>
 		<starttime></starttime>
 		<endtime></endtime>
@@ -49,8 +49,8 @@
 	<event>
 		<id>5</id>
 		<name>Another Event</name>
-		<startdate>2016-10-19</startdate>
-		<enddate></enddate>
+		<startdate>2017-3-10</startdate>
+		<enddate>2017-3-11</enddate>
 		<starttime>9:00</starttime>
 		<endtime>10:00</endtime>
 		<color>#9cc370</color>
@@ -60,8 +60,8 @@
 	<event>
 		<id>6</id>
 		<name>Another Event</name>
-		<startdate>2016-11-2</startdate>
-		<enddate></enddate>
+		<startdate>2017-4-5</startdate>
+		<enddate>2017-4-7</enddate>
 		<starttime></starttime>
 		<endtime></endtime>
 		<color>#9f4b99</color>
