@@ -318,7 +318,10 @@ Monthly 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		// Detect the user's preferred language
 		function defaultLocale() {
-			return navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
+			if(navigator.languages && navigator.languages.length) {
+				return navigator.languages[0];
+			}
+			return navigator.language || navigator.browserLanguage;
 		}
 
 		// Use the user's locale if possible to obtain a list of short month names, falling back on English
