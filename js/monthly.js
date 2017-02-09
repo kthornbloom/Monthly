@@ -279,14 +279,16 @@ Monthly 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		}
 
 		function addEventsFromString(events, setMonth, setYear) {
-			if (options.dataType === "xml") {
-				$(events).find("event").each(function(index, event) {
-					addEvent(event, setMonth, setYear);
-				});
-			} else if (options.dataType === "json") {
-				$.each(events.monthly, function(index, event) {
-					addEvent(event, setMonth, setYear);
-				});
+			if ($(parent).data("setMonth") == setMonth && $(parent).data("setYear") == setYear) {
+				if (options.dataType === "xml") {
+					$(events).find("event").each(function(index, event) {
+						addEvent(event, setMonth, setYear);
+					});
+				} else if (options.dataType === "json") {
+					$.each(events.monthly, function(index, event) {
+						addEvent(event, setMonth, setYear);
+					});
+				}
 			}
 		}
 
