@@ -269,9 +269,12 @@ Monthly 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				if(remoteUrl) {
 					// Replace variables for month and year to load from dynamic sources
 					var url = String(remoteUrl).replace("{month}", month).replace("{year}", year);
-					$.get(url, {now: $.now()}, function(data) {
-						addEventsFromString(data, month, year);
-					}, options.dataType).fail(function() {
+					$(parent + " .monthly-day-wrap").addClass("events-loading");
+					$.get(url, { now: $.now() }, function (data) {
+						if (addEventsFromString(data, month, year)) {
+							$(parent + " .monthly-day-wrap").removeClass("events-loading");
+						}
+					}, options.dataType).fail(function () {
 						console.error("Monthly.js failed to import " + remoteUrl + ". Please check for the correct path and " + options.dataType + " syntax.");
 					});
 				}
@@ -279,14 +282,19 @@ Monthly 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		}
 
 		function addEventsFromString(events, setMonth, setYear) {
-			if (options.dataType === "xml") {
-				$(events).find("event").each(function(index, event) {
-					addEvent(event, setMonth, setYear);
-				});
-			} else if (options.dataType === "json") {
-				$.each(events.monthly, function(index, event) {
-					addEvent(event, setMonth, setYear);
-				});
+			if ($(parent).data("setMonth") == setMonth && $(parent).data("setYear") == setYear) {
+				if (options.dataType === "xml") {
+					$(events).find("event").each(function (index, event) {
+						addEvent(event, setMonth, setYear);
+					});
+				} else if (options.dataType === "json") {
+					$.each(events.monthly, function (index, event) {
+						addEvent(event, setMonth, setYear);
+					});
+				}
+				return true;
+			} else {
+				return false;
 			}
 		}
 
