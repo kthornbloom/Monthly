@@ -113,16 +113,19 @@ Monthly 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					))),
 					innerMarkup = '<div class="monthly-day-number">' + dayNumber + '</div><div class="monthly-indicator-wrap"></div>';
 				if(options.mode === "event") {
-					var dayOfWeek = new Date(year, mZeroed, dayNumber, 0, 0, 0, 0).getDay();
+					var thisDate = new Date(year, mZeroed, dayNumber, 0, 0, 0, 0);
 					$(parent + " .monthly-day-wrap").append("<div"
-						+ attr("class", "m-d monthly-day monthly-day-event" + (isInPast ? " monthly-past-day" : ""))
+						+ attr("class", "m-d monthly-day monthly-day-event"
+							+ (isInPast ? " monthly-past-day" : "")
+							+ " dt" + thisDate.toISOString().slice(0, 10)
+							)
 						+ attr("data-number", dayNumber)
 						+ ">" + innerMarkup + "</div>");
 					$(parent + " .monthly-event-list").append("<div"
 						+ attr("class", "monthly-list-item")
 						+ attr("id", uniqueId + "day" + dayNumber)
 						+ attr("data-number", dayNumber)
-						+ '><div class="monthly-event-list-date">' + dayNames[dayOfWeek] + "<br>" + dayNumber + "</div></div>");
+						+ '><div class="monthly-event-list-date">' + dayNames[thisDate.getDay()] + "<br>" + dayNumber + "</div></div>");
 				} else {
 					$(parent + " .monthly-day-wrap").append("<a"
 						+ attr("href", "#")
