@@ -373,10 +373,21 @@
 .monthly-cal:after			{ content: 'Month'; }
 .monthly-list-item:after	{ content: 'No Events'; }
 
+.monthly-locale-ca .monthly-reset:after		{ content: 'Avui'; }
+.monthly-locale-ca .monthly-cal:after		{ content: 'Mes'; }
+.monthly-locale-ca .monthly-list-item:after	{ content: 'Cap esdeveniment'; }
+
+.monthly-locale-es .monthly-reset:after		{ content: 'Hoy'; }
+.monthly-locale-es .monthly-cal:after		{ content: 'Mes'; }
+.monthly-locale-es .monthly-list-item:after	{ content: 'Ningún evento'; }
+
 .monthly-locale-fr .monthly-reset:after		{ content: "aujourd'hui"; }
 .monthly-locale-fr .monthly-cal:after		{ content: "mois"; }
 .monthly-locale-fr .monthly-list-item:after	{ content: 'aucun événement'; }
 
+.monthly-locale-it .monthly-reset:after		{ content: 'Oggi'; }
+.monthly-locale-it .monthly-cal:after		{ content: 'Mese'; }
+.monthly-locale-it .monthly-list-item:after	{ content: 'Nessun evento'; }
 
 /*
 Calendar shows event titles if the device width allows for at least 3em per day (rounded
