@@ -1,5 +1,5 @@
 /*
-Monthly 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.2.1 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function ($) {
@@ -387,6 +387,8 @@ Monthly 2.2.0 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			var period = "AM";
 			if(hour > 12) {
 				hour -= 12;
+				period = "PM";
+			} else if (hour == 12) {
 				period = "PM";
 			} else if(hour === 0) {
 				hour = 12;
