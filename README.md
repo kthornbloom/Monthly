@@ -23,7 +23,11 @@ Did this plugin help you out? Support open source development! <a href="https://
 
 ##Changelog
 
-🆕 v 2.2.0 - A good deal of edits (see details <a href="https://github.com/kthornbloom/Monthly/pull/41">here</a>) including localization, code cleanup & json events. <b>A big thank you to <a href="https://github.com/richardtallent">Richard Tallent</a> for this one!</b>
+v 2.2.2 - Fixed <a href="https://github.com/kthornbloom/Monthly/issues/62">Issue 62</a>
+
+v 2.2.1 - Fixed an AM/PM display bug
+
+v 2.2.0 - A good deal of edits (see details <a href="https://github.com/kthornbloom/Monthly/pull/41">here</a>) including localization, code cleanup & json events. <b>A big thank you to <a href="https://github.com/richardtallent">Richard Tallent</a> for this one!</b>
 
 v 2.1.0 - Fixed a bug where the event list would animate <i>in</i> but not <i>out</i>. Merged a pull request to include json support. (Thanks marekstodolny!) Made buttons more visible in header for closing event list & reverting to the current month.
 

@@ -1,5 +1,5 @@
 /*
-Monthly 2.2.1 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 */
 
 (function ($) {
@@ -140,9 +140,7 @@ Monthly 2.2.1 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			}
 
 			// Reset button
-			$(parent + " .monthly-header-title").html(
-				'<a href="#" class="monthly-header-title-date" onclick="return false">' + monthNames[month - 1] + " " + year + "</a>"
-				+ (settingCurrentMonth ? "" : '<a href="#" class="monthly-reset"></a>'));
+			$(parent + " .monthly-header-title").html('<a href="#" class="monthly-header-title-date" onclick="return false">' + monthNames[month - 1] + " " + year + "</a>" + (settingCurrentMonth && $(parent + " .monthly-event-list").hide() ? "" : '<a href="#" class="monthly-reset"></a>'));
 
 			// Account for empty days at start
 			if(weekStartsOnMonday) {
