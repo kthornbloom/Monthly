@@ -244,6 +244,15 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					+ (eventColor ? attr("style", "background:" + eventColor) : "")
 					+ attr("title", eventTitle)
 					+ ">" + eventTitle + " " + timeHtml + "</a>";
+			
+			for (var index = startDayNumber; index <= endDayNumber; index++) {
+					var doShowTitle = index === showEventTitleOnDay;
+					// Reset calendar view
+					$(parent + ' *[data-number="' + index + '"] .monthly-indicator-wrap').empty();
+					// Reset event list
+					$(parent + ' .monthly-list-item[data-number="' + index + '"]').empty();
+				}
+			
 			for(var index = startDayNumber; index <= endDayNumber; index++) {
 				var doShowTitle = index === showEventTitleOnDay;
 				// Add to calendar view
