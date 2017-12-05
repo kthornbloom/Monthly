@@ -24,13 +24,14 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				target: "",
 				useIsoDateFormat: false,
 				weekStart: 0,	// Sunday
-				xmlUrl: ""
+				xmlUrl: "",
+				startDate: new Date()
 			};
 
 			var	options = $.extend(defaults, customOptions),
 				uniqueId = $(this).attr("id"),
 				parent = "#" + uniqueId,
-				currentDate = new Date(),
+				currentDate = options.startDate,
 				currentMonth = currentDate.getMonth() + 1,
 				currentYear = currentDate.getFullYear(),
 				currentDay = currentDate.getDate(),
