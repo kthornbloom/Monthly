@@ -213,6 +213,8 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				timeHtml = "",
 				eventURL = _getEventDetail(event, "url"),
 				eventTitle = _getEventDetail(event, "name"),
+				eventDescription = _getEventDetail(event, "description"),
+				eventDescriptionHtml = "",
 				eventClass = _getEventDetail(event, "class"),
 				eventColor = _getEventDetail(event, "color"),
 				eventId = _getEventDetail(event, "id"),
@@ -225,6 +227,10 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				timeHtml = '<div><div class="monthly-list-time-start">' + formatTime(startTime) + "</div>"
 					+ (endTime ? '<div class="monthly-list-time-end">' + formatTime(endTime) + "</div>" : "")
 					+ "</div>";
+			}
+
+			if(eventDescription) {
+				eventDescriptionHtml = '<div><div class="monthly-list-event-description">' + eventDescription + "</div></div>";
 			}
 
 			if(options.linkCalendarToEventUrl && eventURL) {
@@ -243,7 +249,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					+ attr("data-eventid", eventId)
 					+ (eventColor ? attr("style", "background:" + eventColor) : "")
 					+ attr("title", eventTitle)
-					+ ">" + eventTitle + " " + timeHtml + "</a>";
+					+ ">" + eventTitle + " " + timeHtml + eventDescriptionHtml + "</a>";
 			for(var index = startDayNumber; index <= endDayNumber; index++) {
 				var doShowTitle = index === showEventTitleOnDay;
 				// Add to calendar view

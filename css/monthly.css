@@ -354,6 +354,12 @@
 	padding: 0 2px;
 }
 
+.monthly-list-event-description {
+    margin-top: 0.5em;
+	font-size: .8em;
+	display: inline-block;
+}
+
 /* Events List custom webkit scrollbar */
 .monthly-event-list::-webkit-scrollbar {width: 0.75em;}
 
