@@ -24,7 +24,8 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				target: "",
 				useIsoDateFormat: false,
 				weekStart: 0,	// Sunday
-				xmlUrl: ""
+				xmlUrl: "",
+				interval: null // Optional interval value (in seconds) to check for new events
 			};
 
 			var	options = $.extend(defaults, customOptions),
@@ -168,6 +169,11 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			// Events
 			if (options.mode === "event") {
 				addEvents(month, year);
+				if(options.interval !== null) {
+					setInterval(function() {
+						addEvents(month, year);
+					}, options.interval);
+				}
 			}
 			var divs = $(parent + " .m-d");
 			for(index = 0; index < divs.length; index += 7) {
@@ -245,19 +251,22 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					+ attr("title", eventTitle)
 					+ ">" + eventTitle + " " + timeHtml + "</a>";
 			for(var index = startDayNumber; index <= endDayNumber; index++) {
-				var doShowTitle = index === showEventTitleOnDay;
-				// Add to calendar view
-				$(parent + ' *[data-number="' + index + '"] .monthly-indicator-wrap').append(
-						markupDayStart
-						+ attr("class", "monthly-event-indicator" + customClass
-							// Include a class marking if this event continues from the previous day
-							+ (doShowTitle ? "" : " monthly-event-continued")
-							)
-						+ "><span>" + (doShowTitle ? eventTitle : "") + dayEndTags);
-				// Add to event list
-				$(parent + ' .monthly-list-item[data-number="' + index + '"]')
-					.addClass("item-has-event")
-					.append(markupListEvent);
+				// First check if event does not already exist
+				if($(".monthly-event-indicator[data-eventid='" + eventId + "']").length === 0) {
+					var doShowTitle = index === showEventTitleOnDay;
+					// Add to calendar view
+					$(parent + ' *[data-number="' + index + '"] .monthly-indicator-wrap').append(
+							markupDayStart
+							+ attr("class", "monthly-event-indicator" + customClass
+								// Include a class marking if this event continues from the previous day
+								+ (doShowTitle ? "" : " monthly-event-continued")
+								)
+							+ "><span>" + (doShowTitle ? eventTitle : "") + dayEndTags);
+					// Add to event list
+					$(parent + ' .monthly-list-item[data-number="' + index + '"]')
+						.addClass("item-has-event")
+						.append(markupListEvent);
+				}
 			}
 		}
 
