@@ -1,8 +1,6 @@
 #Monthly.js
 A jQuery based responsive calendar plugin 
 
-<a href="http://kthornbloom.com/monthly" target="_blank">Live Demo</a>
-
 ##Features
 
 - Use as a date picker, or a full fledged calendar
