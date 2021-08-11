@@ -8,7 +8,8 @@
       "starttime": "12:00",
       "endtime": "2:00",
       "color": "#FFB128",
-      "url": ""
+      "url": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam libero lacus, malesuada in lectus quis, malesuada luctus urna. Praesent ut tortor ultricies, feugiat ipsum ut, venenatis justo."
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "starttime": "12:00",
       "endtime": "2:00",
       "color": "#EF44EF",
-      "url": ""
+      "url": "",
+      "description": ""
     }
   ]
 }
