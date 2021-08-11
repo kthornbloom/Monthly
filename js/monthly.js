@@ -270,9 +270,12 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				if(remoteUrl) {
 					// Replace variables for month and year to load from dynamic sources
 					var url = String(remoteUrl).replace("{month}", month).replace("{year}", year);
-					$.get(url, {now: $.now()}, function(data) {
-						addEventsFromString(data, month, year);
-					}, options.dataType).fail(function() {
+					$(parent + " .monthly-day-wrap").addClass("events-loading");
+					$.get(url, { now: $.now() }, function (data) {
+						if (addEventsFromString(data, month, year)) {
+							$(parent + " .monthly-day-wrap").removeClass("events-loading");
+						}
+					}, options.dataType).fail(function () {
 						console.error("Monthly.js failed to import " + remoteUrl + ". Please check for the correct path and " + options.dataType + " syntax.");
 					});
 				}
@@ -280,14 +283,19 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		}
 
 		function addEventsFromString(events, setMonth, setYear) {
-			if (options.dataType === "xml") {
-				$(events).find("event").each(function(index, event) {
-					addEvent(event, setMonth, setYear);
-				});
-			} else if (options.dataType === "json") {
-				$.each(events.monthly, function(index, event) {
-					addEvent(event, setMonth, setYear);
-				});
+			if ($(parent).data("setMonth") == setMonth && $(parent).data("setYear") == setYear) {
+				if (options.dataType === "xml") {
+					$(events).find("event").each(function (index, event) {
+						addEvent(event, setMonth, setYear);
+					});
+				} else if (options.dataType === "json") {
+					$.each(events.monthly, function (index, event) {
+						addEvent(event, setMonth, setYear);
+					});
+				}
+				return true;
+			} else {
+				return false;
 			}
 		}
 
@@ -452,18 +460,28 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		});
 
 		// Click A Day
-		$(document.body).on("click touchstart", parent + " .monthly-day", function (event) {
+		var detectTap = false;
+		$(document.body).on("touchstart", parent + " .monthly-day:has(.monthly-event-indicator)", function () {
+			detectTap = true; //detects all touch events
+		});
+		$(document.body).on("touchmove", parent + " .monthly-day:has(.monthly-event-indicator)", function () {
+			detectTap = false; //Excludes the scroll events from touch events
+		});
+		$(document.body).on("click touchend", parent + " .monthly-day:has(.monthly-event-indicator)", function (event) {
+			if(event.type == "touchend" && detectTap == false) return;
 			// If events, show events list
 			var whichDay = $(this).data("number");
 			if(options.mode === "event" && options.eventList) {
-				var	theList = $(parent + " .monthly-event-list"),
-					myElement = document.getElementById(uniqueId + "day" + whichDay),
-					topPos = myElement.offsetTop;
+				var	theList = $(parent + " .monthly-event-list");
+				theList.children(".monthly-active-list-item").removeClass("monthly-active-list-item");
 				theList.show();
 				theList.css("transform");
 				theList.css("transform", "scale(1)");
-				$(parent + ' .monthly-list-item[data-number="' + whichDay + '"]').show();
-				theList.scrollTop(topPos);
+				var element = $(parent + ' .monthly-list-item[data-number="' + whichDay + '"]');
+				element.addClass("monthly-active-list-item");
+				setTimeout(function () {
+					theList.scrollTop(theList.scrollTop() + element.offset().top - theList.offset().top);
+				}, 250);
 				viewToggleButton();
 				if(!options.linkCalendarToEventUrl) {
 					event.preventDefault();
